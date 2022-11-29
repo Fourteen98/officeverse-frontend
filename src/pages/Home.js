@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Office from '../components/Office';
 
@@ -9,18 +10,22 @@ const Home = () => {
   let content;
   if (status === 'succeeded') {
     content = officeList.map((office) => (
-      <Office
+      <Link
+        to={`/offices/${office.id}`}
         key={office.id}
-        id={office.id}
-        title={office.title}
-        description={office.description}
-        area={office.area}
-        occupancy={office.occupancy}
-        images={office.images}
-        basic_price={office.basic_price}
-        address={office.address}
-        user_id={office.user_id}
-      />
+      >
+        <Office
+          id={office.id}
+          title={office.title}
+          description={office.description}
+          area={office.area}
+          occupancy={office.occupancy}
+          images={office.images}
+          basic_price={office.basic_price}
+          address={office.address}
+          user_id={office.user_id}
+        />
+      </Link>
     ));
   }
 
