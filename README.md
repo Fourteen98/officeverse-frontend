@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
+![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bashlogoColor=white)
+# Budgety
+A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 
-In the project directory, you can run:
+## Live Deploy  [Budgety App](https://budgety-eoo6.onrender.com/)
 
-### `npm start`
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.04.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.31.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.38.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.50.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.56.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.47.08.png)
+![](./screenshots/Screen%20Shot%202022-11-16%20at%209.47.18.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Class diagram for the Database
+![](budgety-erd_diagram.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
+- Check the Ruby version or if you have at all by running `ruby -v` if you get something like this `ruby 2.6.8p205 (2021-07-07 revision 67951)` you have Ruby installed.
+- Clone the repository by runiing `git clone https://github.com/raminka13/budgety.git` in your CLI.
+- `cd recipe-app`
+- Run `bundle install`
+- Run `rails db:create db:migrate`
+- Run `rails server`
+- Open Browser `http://localhost:3000/`
 
-### `npm test`
+## Testing
+- Run `rspec spec/`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Author
+👤 **Raul A Ospina** 🧑🏻‍💻
+- GitHub: [@raminka13](https://github.com/raminka13)
+- Twitter: [@raminka13](https://twitter.com/raminka13)
+- LinkedIn: [Raul Ospina](http://linkedin.com/in/raul-ospina)
 
-### `npm run build`
+## 🤝 Contributing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Contributions, issues, and feature requests are welcome!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Feel free to check the [issues page](https://github.com/raminka13/budgety/issues).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Show your support
 
-### `npm run eject`
+Give a ⭐️ if you like this project!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📝 License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project is [MIT](./MIT.md) licensed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Original design idea by [Gregoire Vella on Behance](https://www.behance.net/gregoirevella).
