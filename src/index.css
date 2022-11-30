@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav--link {
+  color: rgb(48, 101, 216);
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0 15px;
+  text-decoration: underline;
+}
+
+.active {
+  color: #2088ff;
+}
+
+.inactive {
+  text-decoration: none;
+}
