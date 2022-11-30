@@ -31,16 +31,15 @@ export const reservationsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchReservations.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.reservations = action.payload;
-    });
-
-    builder.addCase(deleteReservation.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      console.log(action.payload);
-      // state.reservations = action.payload;
-    });
+    builder
+      .addCase(fetchReservations.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.reservations = action.payload;
+      })
+      .addCase(deleteReservation.fulfilled, (state) => {
+        state.status = 'succeeded';
+        // state.reservations = action.payload;
+      });
   },
 });
 

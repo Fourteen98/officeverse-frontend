@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteReservation, fetchReservations } from '../redux/reservations/reservationsSlice';
@@ -12,12 +12,9 @@ const Reservation = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchReservations();
-  }, []);
-
   const handleClick = (e) => {
     dispatch(deleteReservation(e.target.className));
+    dispatch(fetchReservations());
   };
 
   return (
