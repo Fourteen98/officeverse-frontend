@@ -13,7 +13,7 @@ const Reservation = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    dispatch(deleteReservation(e.target.className));
+    dispatch(deleteReservation(e.target.id));
     dispatch(fetchReservations());
   };
 
@@ -48,7 +48,7 @@ const Reservation = (props) => {
         office address:
         {office.address}
       </p>
-      <button type="button" className={id} onClick={handleClick}>Delete</button>
+      <button type="button" id={id} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>Delete</button>
     </>
 
   );
