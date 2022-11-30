@@ -5,33 +5,24 @@
 ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bashlogoColor=white)
-# Budgety
+# Officeverse
 A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
 
 ## Live Deploy  [Budgety App](https://budgety-eoo6.onrender.com/)
-
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.04.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.31.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.38.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.50.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.46.56.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.47.08.png)
-![](./screenshots/Screen%20Shot%202022-11-16%20at%209.47.18.png)
 
 ## Class diagram for the Database
 ![](budgety-erd_diagram.png)
 
 ## Getting Started
-- Check the Ruby version or if you have at all by running `ruby -v` if you get something like this `ruby 2.6.8p205 (2021-07-07 revision 67951)` you have Ruby installed.
-- Clone the repository by runiing `git clone https://github.com/raminka13/budgety.git` in your CLI.
-- `cd recipe-app`
-- Run `bundle install`
-- Run `rails db:create db:migrate`
-- Run `rails server`
+- Clone the repository by runiing `git clone https://github.com/Fourteen98/officeverse-frontend` in your CLI.
+- Navigate to project directory `cd officevers-frontend`
+- Run `npm install`
+- Run `npm start` but to start server 
+- In Development mode, run  `npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch` to scan template files for classes and build the CSS.
 - Open Browser `http://localhost:3000/`
 
 ## Testing
-- Run `rspec spec/`
+
 
 ## Author
 👤 **Raul A Ospina** 🧑🏻‍💻
@@ -39,6 +30,20 @@ A mobile web application where you can manage your budget: you have a list of tr
 - Twitter: [@raminka13](https://twitter.com/raminka13)
 - LinkedIn: [Raul Ospina](http://linkedin.com/in/raul-ospina)
 
+👤 **Muhyideen Elias**
+- GitHub: [@fourteen98](https://github.com/fourteen98)
+- Twitter: [@muhyideen](https://twitter.com/fourteen98)
+- LinkedIn: [Muhyideen Elias](https://www.linkedin.com/muhyideen-elias)
+
+👤 **Ja'fer Yousef**
+- GitHub: [@githubhandle](https://github.com/jaferIdrees)
+- Twitter: [@twitterhandle](https://twitter.com/jafel_l)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/jaferll)
+
+👤 **Diego Yon**
+- GitHub: [@diegoyon](https://github.com/diegoyon)
+- Twitter: [@diegoyon](https://twitter.com/diegoyon)
+- LinkedIn: [Diego Yon](https://www.linkedin.com/in/diego-yon/)
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
