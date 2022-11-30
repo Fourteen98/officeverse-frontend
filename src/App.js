@@ -1,11 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div className="App">
-      <p className="text-3xl">Testing tailwind styles</p>
-      <Home />
-    </div>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
