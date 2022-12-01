@@ -17,6 +17,8 @@ export default function MyReservations() {
         user_id={reservation.user_id}
         office_id={reservation.office_id}
         office={reservation.office}
+        services={reservation.services}
+        peripherals={reservation.peripherals}
       />
     ));
   }
