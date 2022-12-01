@@ -13,8 +13,9 @@ const Reservation = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    dispatch(deleteReservation(e.target.id));
-    dispatch(fetchReservations());
+    dispatch(deleteReservation(e.target.id)).then(() => {
+      dispatch(fetchReservations());
+    });
   };
 
   return (
