@@ -5,8 +5,10 @@ import store from './redux/store';
 import './index.css';
 import App from './App';
 import { fetchOffice } from './redux/offices/officesSlice';
+import { fetchReservations } from './redux/reservations/reservationsSlice';
 
 store.dispatch(fetchOffice());
+store.dispatch(fetchReservations());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
