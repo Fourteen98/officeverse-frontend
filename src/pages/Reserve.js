@@ -7,6 +7,9 @@ import { createReservation, fetchReservations } from '../redux/reservations/rese
 
 export default function Reserve() {
   const officeList = useSelector((state) => state.offices.offices);
+  const servicesList = useSelector((state) => state.services.services);
+  const peripheralsList = useSelector((state) => state.peripherals.peripherals);
+
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [office, setOffice] = useState();
@@ -44,6 +47,31 @@ export default function Reserve() {
       <div className="p-2 bg-black">
         <DatePicker className="border-black" selected={endDate} onChange={(date) => setEndDate(date)} />
       </div>
+
+      <p>Choose your services</p>
+      {servicesList.map((service) => (
+        <>
+          <input type="checkbox" name={service.name} value={service.id} />
+          <label htmlFor={service.name}>
+            {' '}
+            {service.name}
+          </label>
+          <br />
+        </>
+      ))}
+
+      <p>Choose your peripherals</p>
+      {peripheralsList.map((peripheral) => (
+        <>
+          <input type="checkbox" name={peripheral.name} value={peripheral.id} />
+          <label htmlFor={peripheral.name}>
+            {' '}
+            {peripheral.name}
+          </label>
+          <br />
+        </>
+      ))}
+
       <button type="button" onClick={handleClick}>Create Reservation</button>
     </>
   );
