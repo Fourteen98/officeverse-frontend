@@ -1,66 +1,42 @@
 /* eslint-disable camelcase */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Office = (props) => {
   const {
-    id, title, description, area, occupancy, images, basic_price, address, user_id,
+    title, images, address, basicPrice,
   } = props;
   return (
-    <>
-      <hr />
-      <div>
-        Office
-        {id}
+    <div className="border-2 flex h-56 w-44 flex-col items-center mt-5 rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
+      <div className="relative h-40 w-44">
+        <img className="object-fill rounded-lg h-40 w-44" src={images} alt="office" />
       </div>
-      <p>
-        Title:
-        {title}
-      </p>
-      <p>
-        description:
-        {description}
-      </p>
-      <p>
-        area:
-        {area}
-      </p>
-      <p>
-        occupancy:
-        {occupancy}
-      </p>
-      <p>
-        images:
-        {images}
-      </p>
-      <p>
-        basic_price:
-        {basic_price}
-      </p>
-      <p>
-        address:
-        {address}
-      </p>
-      <p>
-        user_id:
-        {user_id}
-      </p>
-    </>
+      <div className="flex flex-col">
+        <span className="font-semibold text-xs">
+          {title}
+        </span>
+        <span className="text-xs text-gray-400">
+          {address}
+        </span>
+        <span className="text-xs text-gray-400">
+          {basicPrice}
+        </span>
+      </div>
+    </div>
 
   );
 };
 
 Office.propTypes = {
-  id: PropTypes.number.isRequired,
+  // id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  area: PropTypes.string.isRequired,
-  occupancy: PropTypes.string.isRequired,
+  // description: PropTypes.string.isRequired,
+  // area: PropTypes.string.isRequired,
+  // occupancy: PropTypes.string.isRequired,
   images: PropTypes.string.isRequired,
-  basic_price: PropTypes.string.isRequired,
+  basicPrice: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  user_id: PropTypes.number.isRequired,
+  // user_id: PropTypes.number.isRequired,
 };
 
 export default Office;

@@ -17,7 +17,7 @@ const Home = () => {
         area={office.area}
         occupancy={office.occupancy}
         images={office.images}
-        basic_price={office.basic_price}
+        basicPrice={office.basic_price}
         address={office.address}
         user_id={office.user_id}
       />
@@ -25,10 +25,11 @@ const Home = () => {
   }
 
   return (
-    <>
-      <h1>Office List</h1>
-      {content}
-    </>
+    <section className="border-2 max-w-7xl h-screen mx-auto pt-6  px-8 sm:px-16 ">
+      <div className="grid grid-rows-2 grid-flow-col gap-2 auto-cols-fr space-x-1">
+        {content}
+      </div>
+    </section>
   );
 };
 
