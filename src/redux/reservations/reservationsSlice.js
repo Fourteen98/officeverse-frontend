@@ -2,6 +2,8 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+// import { useDispatch } from 'react-redux';
+import { notificationActions } from '../notification/notificationSlice';
 
 const RESERVATIONS_URL = 'http://127.0.0.1:4000/api/v1/users/1/reservations';
 
@@ -50,8 +52,12 @@ export const reservationsSlice = createSlice({
       })
       .addCase(createReservation.fulfilled, (state) => {
         state.status = 'succeeded';
-        // state.reservations = action.payload;
-      });
+      })
+      .addCase(createReservation.fulfilled, notificationActions.showNotification({
+        open: true,
+        message: 'Reservation created successfully',
+        type: 'success',
+      }));
   },
 });
 

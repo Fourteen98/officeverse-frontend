@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const notificationSlice = createSlice({
-  name: 'notifications',
+  name: 'notification',
   initialState: {
     notification: null,
   },
   reducers: {
     showNotifcation(state, action) {
       state.notification = { // eslint-disable-line
-        message: action.payload.message,
-        type: action.payload.type,
-        open: action.payload.open,
+        open: action.open,
+        message: action.message,
+        type: action.type,
       };
     },
   },

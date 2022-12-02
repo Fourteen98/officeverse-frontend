@@ -17,7 +17,7 @@ const OfficeDetails = () => {
         title={office.title}
         description={office.description}
         area={office.area}
-        occupancy={office.occupancy}
+        occupancy={office.occupancy.toString()}
         images={office.images}
         basic_price={office.basic_price}
         address={office.address}
