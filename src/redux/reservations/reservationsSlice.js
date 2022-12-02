@@ -21,6 +21,14 @@ export const deleteReservation = createAsyncThunk(
   },
 );
 
+export const createReservation = createAsyncThunk(
+  'reservations/createReservation',
+  async (data) => {
+    const response = await axios.post(RESERVATIONS_URL, data);
+    return response.data;
+  },
+);
+
 const initialState = {
   reservations: [],
   status: 'idle',
@@ -37,6 +45,10 @@ export const reservationsSlice = createSlice({
         state.reservations = action.payload;
       })
       .addCase(deleteReservation.fulfilled, (state) => {
+        state.status = 'succeeded';
+        // state.reservations = action.payload;
+      })
+      .addCase(createReservation.fulfilled, (state) => {
         state.status = 'succeeded';
         // state.reservations = action.payload;
       });

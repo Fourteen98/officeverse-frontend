@@ -7,7 +7,7 @@ import { deleteReservation, fetchReservations } from '../redux/reservations/rese
 
 const Reservation = (props) => {
   const {
-    id, start_date, end_date, user_id, office_id, office,
+    id, start_date, end_date, user_id, office_id, office, services, peripherals,
   } = props;
 
   const dispatch = useDispatch();
@@ -49,6 +49,28 @@ const Reservation = (props) => {
         office address:
         {office.address}
       </p>
+      <div>
+        services:
+        {services.map((service) => (
+          <div key={service.id}>
+            <p>
+              -
+              {service.name}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div>
+        peripherals:
+        {peripherals.map((peripheral) => (
+          <div key={peripheral.id}>
+            <p>
+              -
+              {peripheral.name}
+            </p>
+          </div>
+        ))}
+      </div>
       <button type="button" id={id} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>Delete</button>
     </>
 
@@ -62,6 +84,8 @@ Reservation.propTypes = {
   user_id: PropTypes.number.isRequired,
   office_id: PropTypes.number.isRequired,
   office: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  services: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  peripherals: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
 };
 
 export default Reservation;
