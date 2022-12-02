@@ -3,11 +3,16 @@ import { NavLink } from 'react-router-dom';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
 
 export default function NavBar() {
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const mobileModal = document.getElementById('mobile-modal');
+  hamburgerMenu.addEventListener('click', () => {
+    mobileModal.classList.toggle('hidden');
+  });
   return (
     <nav className="sticky top-0 z-50 bg-white border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/" className="flex items-center">
-          <img src={officeverseLogo} className="w-12 h-6 mr-2 sm:h-9" alt="officeverse Logo" />
+          <img src={officeverseLogo} className="w-8 h-6 mr-2 sm:h-9 md:w-12 " alt="officeverse Logo" />
           <span className="pt-2 self-center text-md font-semibold whitespace-nowrap">Officeverse</span>
         </NavLink>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -28,6 +33,13 @@ export default function NavBar() {
               </NavLink>
             </li>
           </ul>
+        </div>
+        <div id="hamburger-menu" className="md:hidden">
+          <button type="button" className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
+            <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+              <path fillRule="evenodd" clipRule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
+            </svg>
+          </button>
         </div>
       </div>
     </nav>
