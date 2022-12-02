@@ -1,12 +1,19 @@
+/* eslint-disable */
 import React from 'react';
 import { Alert } from '@mui/material';
-import notificationSlice from '../redux/notification/notificationSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { notificationActions } from '../redux/notification/notificationSlice';
 
 function Notification({ type, message }) {
-  const dispatch = useDispatch(state.)
+  const notification = useSelector(state.notification.notification);
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch(notificationActions.showNotification({ open: false }));
+  };
   return (
-    <div>Notification</div>
+    <div>
+      {notification.open && <Alert onClose={handleClose} severity={notification.type}>{notification.message}</Alert>}
+    </div>
   );
 }
 
