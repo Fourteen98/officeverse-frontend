@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function MobileModal() {
   return (
-    <div id="mobile-modal" className="hidden w-screen h-screen">
+    <div id="mobile-modal">
       <div className="w-full md:block md:w-auto" id="navbar-default">
         <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
           <li>
