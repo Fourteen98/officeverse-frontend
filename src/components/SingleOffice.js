@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Office = (props) => {
+const SingleOffice = (props) => {
   const {
     title, images, address, basicPrice,
   } = props;
@@ -27,7 +27,7 @@ const Office = (props) => {
   );
 };
 
-Office.propTypes = {
+SingleOffice.propTypes = {
   // id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   // description: PropTypes.string.isRequired,
@@ -39,4 +39,4 @@ Office.propTypes = {
   // user_id: PropTypes.number.isRequired,
 };
 
-export default Office;
+export default SingleOffice;
