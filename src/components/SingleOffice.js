@@ -7,7 +7,7 @@ const SingleOffice = (props) => {
     title, images, address, basicPrice,
   } = props;
   return (
-    <div className="border-2 flex h-56 w-44 flex-col items-center mt-5 rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
+    <div className="border-2 flex h-56 w-44 flex-col items-center  rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
       <div className="relative h-40 w-44">
         <img className="object-fill rounded-lg h-40 w-44" src={images} alt="office" />
       </div>
