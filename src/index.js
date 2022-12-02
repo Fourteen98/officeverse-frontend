@@ -5,8 +5,14 @@ import store from './redux/store';
 import './index.css';
 import App from './App';
 import { fetchOffice } from './redux/offices/officesSlice';
+import { fetchReservations } from './redux/reservations/reservationsSlice';
+import { fetchServices } from './redux/services/servicesSlice';
+import { fetchPeripherals } from './redux/peripherals/peripheralsSlice';
 
 store.dispatch(fetchOffice());
+store.dispatch(fetchReservations());
+store.dispatch(fetchServices());
+store.dispatch(fetchPeripherals());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
