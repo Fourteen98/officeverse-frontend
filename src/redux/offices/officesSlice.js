@@ -13,6 +13,15 @@ export const fetchOffice = createAsyncThunk(
   },
 );
 
+export const createOffice = createAsyncThunk(
+  'offices/createOffice',
+  async (data) => {
+    console.log(data);
+    const response = await axios.post(OFFICES_URL, data);
+    return response.data;
+  },
+);
+
 const initialState = {
   offices: [],
   status: 'idle',
@@ -23,10 +32,14 @@ export const officesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchOffice.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.offices = action.payload;
-    });
+    builder
+      .addCase(fetchOffice.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.offices = action.payload;
+      })
+      .addCase(createOffice.fulfilled, (state) => {
+        state.status = 'succeeded';
+      });
   },
 });
 
