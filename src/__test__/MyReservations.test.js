@@ -1,64 +1,42 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
-// import '@testing-library/jest-dom';
-// import { rest } from 'msw';
-// import { setupServer } from 'msw/node';
-// import renderer from 'react-test-renderer';
-import { render, screen, fireEvent } from '@testing-library/react';
-// import MyReservations from '../pages/MyReservations';
-// import renderWithProviders from '../utils/test-utils';
-import Office from '../components/Office';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { fireEvent, screen } from '@testing-library/react';
+// We're using our own custom render function and not RTL's render.
+import renderWithProviders from '../../utils/test-utils';
+import MyReservations from '../pages/MyReservations';
 
-/* const handlers = [
-  rest.get('/api/http://127.0.0.1:4000/api/v1/users/1/reservations/1', (req, res, ctx) => res(ctx.json('John Smith'), ctx.delay(150))),
+// We use msw to intercept the network request during the test,
+// and return the response 'John Smith' after 150ms
+// when receiving a get request to the `/api/user` endpoint
+export const handlers = [
+  rest.get('/api/v1/users/1/reservations/1', (req, res, ctx) => res(ctx.json('John Smith'), ctx.delay(150))),
 ];
 
-const server = setupServer(...handlers);
+export const server = setupServer(...handlers);
 
+// Enable API mocking before tests.
 beforeAll(() => server.listen());
+
+// Reset any runtime request handlers we may add during the tests.
 afterEach(() => server.resetHandlers());
+
+// Disable API mocking after the tests are done.
+afterAll(() => server.close());
 
 test('fetches & receives a user after clicking the fetch user button', async () => {
   renderWithProviders(<MyReservations />);
 
+  // should show no user initially, and not be fetching a user
+  expect(screen.getByText(/no user/i)).toBeInTheDocument();
+  expect(screen.queryByText(/Fetching user\.\.\./i)).not.toBeInTheDocument();
+
+  // after clicking the 'Fetch user' button, it should now show that it is fetching the user
+  fireEvent.click(screen.getByRole('button', { name: /Fetch user/i }));
+  expect(screen.getByText(/no user/i)).toBeInTheDocument();
+
+  // after some time, the user should be received
   expect(await screen.findByText(/John Smith/i)).toBeInTheDocument();
-}); */
-
-/* describe('MyReservations page testing using snapshots', () => {
-  it('MyReservations page renders', () => {
-  const tree = renderer
-	  .create(<MyReservations />);
-	  expect(tree).toMatchSnapshot();
-  });
-}); */
-
-const office = {
-  id: 1,
-  title: 'test office',
-
-  description: 'Asperiores mollitia ex sunt.',
-
-  area: 'atque',
-
-  occupancy: 3,
-
-  images: ['https://loremflickr.com/50/50/office'],
-
-  basic_price: '95.43',
-
-  address: 'Suite 119 96402 Towne Drives, North Ivory, WY 54894',
-
-  user_id: 1,
-};
-
-describe('MyReservation', () => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  render(<Office {...office} />);
-  it('', () => {
-    expect(screen.getByText('Title:test office'));
-  });
+  expect(screen.queryByText(/no user/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Fetching user\.\.\./i)).not.toBeInTheDocument();
 });
-
