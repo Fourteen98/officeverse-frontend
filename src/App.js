@@ -15,11 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Office />} />
         <Route path="/reserve" element={<Reserve />} />
-
         <Route path="/newoffice" element={<NewOffice />} />
         <Route path="/myoffices" element={<MyOffices />} />
         <Route path="/offices/:id" element={<OfficeDetails />} />
-        <Route path="/Office/:id" element={<OfficeDetails />} />
         <Route path="/my-reservations" element={<MyReservations />} />
       </Routes>
     </Router>
