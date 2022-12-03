@@ -6,7 +6,7 @@ const notificationSlice = createSlice({
     notification: null,
   },
   reducers: {
-    showNotifcation(state, action) {
+    showNotification(state, action) {
       state.notification = { // eslint-disable-line
         open: action.open,
         message: action.message,

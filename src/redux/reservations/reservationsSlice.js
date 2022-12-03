@@ -25,8 +25,10 @@ export const deleteReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
   'reservations/createReservation',
-  async (data, thunkAPI) => {
-    thunkAPI.dispatch(notificationActions.showNotification({ message: 'Creating reservation...', status: 'pending', type: 'warning' }));
+  async (data, { dispatch }) => {
+    console.log('data', data);
+    dispatch(notificationActions.showNotification({ message: 'Creating Reservation..', type: 'warning', open: true }));
+    console.log('dispatch notification');
     const response = await axios.post(RESERVATIONS_URL, data);
     return response.data;
   },
