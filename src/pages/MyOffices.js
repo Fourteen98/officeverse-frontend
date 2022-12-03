@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Office from '../components/Office';
+import SingleOffice from '../components/SingleOffice';
 
 const MyOffices = () => {
   const officeList = useSelector((state) => state.offices.offices);
@@ -15,14 +15,14 @@ const MyOffices = () => {
         to={`/offices/${office.id}`}
         key={office.id}
       >
-        <Office
+        <SingleOffice
           id={office.id}
           title={office.title}
           description={office.description}
           area={office.area}
           occupancy={office.occupancy}
           images={office.images}
-          basic_price={office.basic_price}
+          basicPrice={office.basic_price}
           address={office.address}
           user_id={office.user_id}
         />
@@ -32,7 +32,7 @@ const MyOffices = () => {
 
   return (
     <>
-      <h1>Office List</h1>
+      <h1>My Office List</h1>
       {content}
     </>
   );
