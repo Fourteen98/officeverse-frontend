@@ -25,7 +25,8 @@ export const deleteReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
   'reservations/createReservation',
-  async (data) => {
+  async (data, thunkAPI) => {
+    thunkAPI.dispatch(notificationActions.showNotification({ message: 'Creating reservation...', status: 'pending', type: 'warning' }));
     const response = await axios.post(RESERVATIONS_URL, data);
     return response.data;
   },
@@ -52,12 +53,7 @@ export const reservationsSlice = createSlice({
       })
       .addCase(createReservation.fulfilled, (state) => {
         state.status = 'succeeded';
-      })
-      .addCase(createReservation.fulfilled, notificationActions.showNotification({
-        open: true,
-        message: 'Reservation created successfully',
-        type: 'success',
-      }));
+      });
   },
 });
 
