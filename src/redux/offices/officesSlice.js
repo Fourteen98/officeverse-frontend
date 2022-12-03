@@ -16,7 +16,6 @@ export const fetchOffice = createAsyncThunk(
 export const createOffice = createAsyncThunk(
   'offices/createOffice',
   async (data) => {
-    console.log(data);
     const response = await axios.post(OFFICES_URL, data);
     return response.data;
   },
