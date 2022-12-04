@@ -7,7 +7,7 @@ const SingleOffice = (props) => {
     title, images, occupancy,
   } = props;
   return (
-    <div className="border-2 flex h-54 w-auto md:w-auto lg:w-auto xl:w-auto flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
+    <div className="border-8 flex h-54 w-auto md:w-auto lg:w-auto xl:w-auto flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
       <div className="relative h-40 w-full">
         <img className="object-fill rounded-lg h-40  min-w-full" src={images} alt="office" />
       </div>
