@@ -17,9 +17,30 @@ export const fetchReservations = createAsyncThunk(
 
 export const deleteReservation = createAsyncThunk(
   'reservations/deleteReservation',
-  async (id) => {
-    const response = await axios.delete(`http://127.0.0.1:4000/api/v1/users/1/reservations/${id}`);
-    return response.data;
+  async (id, { dispatch }) => {
+    dispatch(notificationActions.showNotification({
+      message: 'Deleting reservation...',
+      type: 'info',
+      open: true,
+    }));
+    const sendCreateReservation = async () => {
+      const response = await axios.delete(`http://127.0.0.1:4000/api/v1/users/1/reservations/${id}`);
+      dispatch(notificationActions.showNotification({
+        message: 'Reservation Deleted Successfully!',
+        type: 'success',
+        open: true,
+      }));
+      return response.data;
+    };
+    try {
+      await sendCreateReservation();
+    } catch (error) {
+      dispatch(notificationActions.showNotification({
+        message: 'Delete Failed!',
+        type: 'error',
+        open: true,
+      }));
+    }
   },
 );
 
@@ -31,7 +52,7 @@ export const createReservation = createAsyncThunk(
       type: 'warning',
       open: true,
     }));
-    const sendReservation = async () => {
+    const sendCreateReservation = async () => {
       const response = await axios.post(RESERVATIONS_URL, reservation);
       dispatch(notificationActions.showNotification({
         message: 'Reservation Created Successfully!',
@@ -41,7 +62,7 @@ export const createReservation = createAsyncThunk(
       return response.data;
     };
     try {
-      await sendReservation();
+      await sendCreateReservation();
     } catch (error) {
       dispatch(notificationActions.showNotification({
         message: 'Reservation Failed!',
