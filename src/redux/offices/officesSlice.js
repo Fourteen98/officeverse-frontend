@@ -2,6 +2,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { notificationActions } from '../notification/notificationSlice';
 
 const OFFICES_URL = 'http://127.0.0.1:4000/api/v1/offices';
 
@@ -15,9 +16,30 @@ export const fetchOffice = createAsyncThunk(
 
 export const createOffice = createAsyncThunk(
   'offices/createOffice',
-  async (data) => {
-    const response = await axios.post(OFFICES_URL, data);
-    return response.data;
+  async (office, { dispatch }) => {
+    dispatch(notificationActions.showNotification({
+      message: 'Sending office..',
+      type: 'info',
+      open: true,
+    }));
+    const sendCreateOffice = async () => {
+      const response = await axios.post(OFFICES_URL, office);
+      dispatch(notificationActions.showNotification({
+        message: 'Office added successfully!',
+        type: 'success',
+        open: true,
+      }));
+      return response.data;
+    };
+    try {
+      await sendCreateOffice();
+    } catch (error) {
+      dispatch(notificationActions.showNotification({
+        message: 'Could not add office!',
+        type: 'error',
+        open: true,
+      }));
+    }
   },
 );
 
