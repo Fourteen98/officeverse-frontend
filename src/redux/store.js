@@ -11,7 +11,7 @@ const store = configureStore({
     reservations: reservationsReducer,
     services: servicesReducer,
     peripherals: peripheralsReducer,
-    notification: notificationSlice,
+    notification: notificationSlice.reducer,
   },
 });
 
