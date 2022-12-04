@@ -2,6 +2,8 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+// import { useDispatch } from 'react-redux';
+import { notificationActions } from '../notification/notificationSlice';
 
 const RESERVATIONS_URL = 'http://127.0.0.1:4000/api/v1/users/1/reservations';
 
@@ -23,9 +25,30 @@ export const deleteReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
   'reservations/createReservation',
-  async (data) => {
-    const response = await axios.post(RESERVATIONS_URL, data);
-    return response.data;
+  async (reservation, { dispatch }) => {
+    dispatch(notificationActions.showNotification({
+      message: 'Sending Reservation..',
+      type: 'warning',
+      open: true,
+    }));
+    const sendReservation = async () => {
+      const response = await axios.post(RESERVATIONS_URL, reservation);
+      dispatch(notificationActions.showNotification({
+        message: 'Reservation Created Successfully!',
+        type: 'success',
+        open: true,
+      }));
+      return response.data;
+    };
+    try {
+      await sendReservation();
+    } catch (error) {
+      dispatch(notificationActions.showNotification({
+        message: 'Reservation Failed!',
+        type: 'error',
+        open: true,
+      }));
+    }
   },
 );
 
@@ -50,7 +73,6 @@ export const reservationsSlice = createSlice({
       })
       .addCase(createReservation.fulfilled, (state) => {
         state.status = 'succeeded';
-        // state.reservations = action.payload;
       });
   },
 });
