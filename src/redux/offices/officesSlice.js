@@ -16,14 +16,30 @@ export const fetchOffice = createAsyncThunk(
 
 export const createOffice = createAsyncThunk(
   'offices/createOffice',
-  async (data, { dispatch }) => {
+  async (office, { dispatch }) => {
     dispatch(notificationActions.showNotification({
-      message: 'Sending Office..',
-      type: 'warning',
+      message: 'Sending office..',
+      type: 'info',
       open: true,
     }));
-    const response = await axios.post(OFFICES_URL, data);
-    return response.data;
+    const sendCreateOffice = async () => {
+      const response = await axios.post(OFFICES_URL, office);
+      dispatch(notificationActions.showNotification({
+        message: 'Office added successfully!',
+        type: 'success',
+        open: true,
+      }));
+      return response.data;
+    };
+    try {
+      await sendCreateOffice();
+    } catch (error) {
+      dispatch(notificationActions.showNotification({
+        message: 'Could not add office!',
+        type: 'error',
+        open: true,
+      }));
+    }
   },
 );
 
