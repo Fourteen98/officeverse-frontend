@@ -25,14 +25,30 @@ export const deleteReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
   'reservations/createReservation',
-  async (data, { dispatch }) => {
+  async (reservation, { dispatch }) => {
     dispatch(notificationActions.showNotification({
-      open: true,
-      message: 'Creating Reservation..',
+      message: 'Sending Reservation..',
       type: 'warning',
+      open: true,
     }));
-    const response = await axios.post(RESERVATIONS_URL, data);
-    return response.data;
+    const sendReservation = async () => {
+      const response = await axios.post(RESERVATIONS_URL, reservation);
+      dispatch(notificationActions.showNotification({
+        message: 'Reservation Created Successfully!',
+        type: 'success',
+        open: true,
+      }));
+      return response.data;
+    };
+    try {
+      await sendReservation();
+    } catch (error) {
+      dispatch(notificationActions.showNotification({
+        message: 'Reservation Failed!',
+        type: 'error',
+        open: true,
+      }));
+    }
   },
 );
 
