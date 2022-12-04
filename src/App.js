@@ -13,7 +13,6 @@ import Notification from './components/Notification';
 
 function App() {
   const notification = useSelector((state) => state.notification.notification);
-  console.log('notification', notification);
   return (
     <Router>
       {notification && (<Notification type={notification.type} message={notification.message} />)}
