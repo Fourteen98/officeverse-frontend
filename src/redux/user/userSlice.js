@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -21,7 +22,9 @@ export const fetchCurrentUser = createAsyncThunk(
 
 export const createUser = createAsyncThunk(
   'user/createUser',
-  async (user, { dispatch }) => {
+  async ({
+    first_name, last_name, username, email, password,
+  }, { dispatch }) => {
     dispatch(notificationActions.showNotification({
       message: 'Sending user..',
       type: 'info',
@@ -29,7 +32,17 @@ export const createUser = createAsyncThunk(
     }));
 
     const sendCreateUser = async () => {
-      const response = await axios.post(`${USER_URL}signup`, user);
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      console.log(first_name, last_name, username, email, password);
+      const response = await axios.post(`${USER_URL}signup`, JSON.stringify({
+        user: {
+          first_name, last_name, username, email, password,
+        },
+      }), config);
       dispatch(notificationActions.showNotification({
         message: 'User added successfully!',
         type: 'success',
@@ -81,9 +94,17 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-const initialState = {
+/* const initialState = {
   user: '',
   status: 'idle',
+}; */
+
+const initialState = {
+  loading: false,
+  userInfo: {}, // for user object
+  userToken: null, // for storing the JWT
+  error: null,
+  success: false, // for monitoring the registration process.
 };
 
 export const userSlice = createSlice({
