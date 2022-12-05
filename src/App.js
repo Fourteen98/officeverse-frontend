@@ -1,6 +1,5 @@
-/* eslint-disable */
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Office from './pages/Office';
 import NavBar from './components/NavBar';
 import Reserve from './pages/Reserve';
@@ -13,6 +12,7 @@ import Notification from './components/Notification';
 
 function App() {
   const notification = useSelector((state) => state.notification.notification);
+
   return (
     <Router>
       {notification && (<Notification type={notification.type} message={notification.message} />)}
