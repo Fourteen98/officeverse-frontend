@@ -41,25 +41,25 @@ const Signup = () => {
           <input
             type="text"
             className="form-input"
-            {...register('firstName')}
+            {...register('first_name')}
             required
           />
         </label>
       </div>
       <div className="form-group">
-        <label htmlFor="lastName">
-          First Name
+        <label htmlFor="last_name">
+          Last Name
           <input
             type="text"
             className="form-input"
-            {...register('lastName')}
+            {...register('last_name')}
             required
           />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="username">
-          First Name
+          User Name
           <input
             type="text"
             className="form-input"
