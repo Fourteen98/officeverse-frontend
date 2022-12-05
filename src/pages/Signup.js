@@ -24,7 +24,6 @@ const Signup = () => {
   }, [navigate, success]);
 
   const submitForm = (data) => {
-    console.log(data);
     if (data.password !== data.confirmPassword) {
       alert('Password mismatch');
       return;

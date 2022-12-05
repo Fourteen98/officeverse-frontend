@@ -108,12 +108,11 @@ export const loginUser = createAsyncThunk(
           return '';
         });
       localStorage.setItem('token', response.headers.get('Authorization'));
-      return response.data;
+      return response;
     };
     try {
       await sendLoginUser();
     } catch (error) {
-      console.log(error);
       dispatch(notificationActions.showNotification({
         message: 'Could not Loggin!',
         type: 'error',
@@ -150,6 +149,9 @@ export const userSlice = createSlice({
         state.success = true;
       })
       .addCase(loginUser.fulfilled, (state) => {
+        state.loading = false;
+        // state.userInfo = payload;
+        // state.userToken = payload.token;
         state.status = 'succeeded';
       });
   },
