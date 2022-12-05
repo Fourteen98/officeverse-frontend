@@ -6,17 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/user/userSlice';
 
 const LoginPage = () => {
-  const { userInfo, error } = useSelector((state) => state.user);
+  const { status, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   // redirect authenticated user to profile screen
   useEffect(() => {
-    if (Object.keys(userInfo).length !== 0) {
-      navigate('/myoffices');
+    if (status === 'succeeded') {
+      setTimeout(() => navigate('/myoffices'), 1000);
     }
-  }, [navigate, userInfo]);
+  }, [navigate, status]);
 
   const submitForm = (data) => {
     dispatch(loginUser(data));

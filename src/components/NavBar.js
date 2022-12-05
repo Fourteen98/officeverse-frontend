@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user/userSlice';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
@@ -7,7 +7,15 @@ import officeverseLogo from '../assets/images/officeverse-logo.png';
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const currentUser = useSelector((state) => state.user.user);
+  const { status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (status === 'idle') {
+      navigate('/');
+    }
+  }, [navigate, status]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
