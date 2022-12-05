@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const SingleOffice = (props) => {
   const {
-    title, images, occupancy,
+    title, images, occupancy, user_id,
   } = props;
   return (
     <div className="border-2 flex h-54 w-auto md:w-auto lg:w-auto xl:w-auto flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
@@ -12,6 +12,10 @@ const SingleOffice = (props) => {
         <img className="object-fill rounded-lg h-40  min-w-full" src={images} alt="office" />
       </div>
       <div className="flex flex-col p-2">
+        <span className="font-semibold text-xs">
+          User :
+          {user_id}
+        </span>
         <span className="font-semibold text-xs">
           Title :
           {title}
@@ -40,7 +44,7 @@ SingleOffice.propTypes = {
   images: PropTypes.string.isRequired,
   // basicPrice: PropTypes.string.isRequired,
   // address: PropTypes.string.isRequired,
-  // user_id: PropTypes.number.isRequired,
+  user_id: PropTypes.number.isRequired,
 };
 
 export default SingleOffice;
