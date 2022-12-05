@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchCurrentUser, loginUser } from '../redux/user/userSlice';
 
@@ -7,9 +7,9 @@ export default function Login() {
   // const [office, setOffice] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.user.user);
+  // const currentUser = useSelector((state) => state.user.user);
 
-  const [user, setUser] = useState(currentUser);
+  // const [user, setUser] = useState(currentUser);
 
   /* const handleChange = (event) => {
     const { name } = event.target;
@@ -17,21 +17,25 @@ export default function Login() {
     setOffice((values) => ({ ...values, [name]: value }));
   }; */
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    console.log('hello', event.email, event.password);
+    event.preventDefault();
     dispatch(loginUser({
-      email: user.email,
-      password: user.password,
+      user: {
+        email: event.email,
+        password: event.password,
+      },
     })).then(() => {
       dispatch(fetchCurrentUser());
       navigate('/myoffices');
-      setUser(1);
+      // setUser(1);
     });
   };
 
   return (
-    <form>
+    <form onSubmit={() => { console.log('test'); handleClick(); }}>
       <label htmlFor="email">
-        Office Title:
+        Email:
         <input
           className="bg-gray-200"
           type="text"
@@ -44,14 +48,14 @@ export default function Login() {
         Password:
         <input
           className="bg-gray-200"
-          type="number"
+          type="password"
           name="password"
           // onChange={handleChange}
         />
       </label>
       <br />
       <br />
-      <button type="button" onClick={handleClick}>Login</button>
+      <button type="submit">Login</button>
     </form>
   );
 }

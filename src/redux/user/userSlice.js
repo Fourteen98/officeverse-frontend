@@ -79,6 +79,7 @@ export const createUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, { dispatch }) => {
+    console.log('Hello', user);
     dispatch(notificationActions.showNotification({
       message: 'Loggin user..',
       type: 'info',
@@ -86,7 +87,26 @@ export const loginUser = createAsyncThunk(
     }));
 
     const sendLoginUser = async () => {
-      const response = await axios.post(`${USER_URL}login`, user);
+      const response = await fetch('http://127.0.0.1:4000/login', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            console.log(res.headers.get('Authorization'));
+            localStorage.setItem('token', res.headers.get('Authorization'));
+            return res.json();
+          }
+          throw new Error(res);
+        })
+        .then((json) => console.dir(json))
+        .catch((err) => console.error(err));
+
       dispatch(notificationActions.showNotification({
         message: 'User Logged In successfully!',
         type: 'success',
