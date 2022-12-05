@@ -32,24 +32,37 @@ export const createUser = createAsyncThunk(
     }));
 
     const sendCreateUser = async () => {
-      const config = {
+      /* const config = {
         headers: {
           'Content-Type': 'application/json',
         },
-      };
-      console.log(first_name, last_name, username, email, password);
-      const response = await axios.post(`${USER_URL}signup`, JSON.stringify({
+      }; */
+      fetch('http://127.0.0.1:4000/signup', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: {
+            first_name, last_name, username, email, password,
+          },
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            localStorage.setItem('token', res.headers.get('Authorization'));
+          }
+        });
+      /* const response = await axios.post(`${USER_URL}signup`, {
         user: {
           first_name, last_name, username, email, password,
         },
-      }), config);
+      }, config).catch((e) => console.log(e)); */
       dispatch(notificationActions.showNotification({
         message: 'User added successfully!',
         type: 'success',
         open: true,
       }));
-      localStorage.setItem('token', response.headers.get('Authorization'));
-      return response.data;
     };
     try {
       await sendCreateUser();
@@ -118,7 +131,7 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(createUser.fulfilled, (state) => {
-        state.status = 'succeeded';
+        state.success = true;
       })
       .addCase(loginUser.fulfilled, (state) => {
         state.status = 'succeeded';
