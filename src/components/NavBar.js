@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/user/userSlice';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
 
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const currentUser = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -38,6 +40,11 @@ export default function NavBar() {
           <NavLink to="/my-reservations" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             My reservations
           </NavLink>
+        </li>
+        <li>
+          <button type="button" className="button" onClick={() => dispatch(logout())}>
+            Logout
+          </button>
         </li>
       </ul>
     )

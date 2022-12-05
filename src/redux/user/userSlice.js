@@ -78,6 +78,7 @@ export const createUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'user/loginUser',
+  // eslint-disable-next-line consistent-return
   async (user, { dispatch }) => {
     dispatch(notificationActions.showNotification({
       message: 'Loggin user..',
@@ -95,6 +96,7 @@ export const loginUser = createAsyncThunk(
           user,
         }),
       })
+        // eslint-disable-next-line consistent-return
         .then((res) => {
           if (res.ok) {
             localStorage.setItem('token', res.headers.get('Authorization'));
@@ -103,11 +105,11 @@ export const loginUser = createAsyncThunk(
               type: 'success',
               open: true,
             }));
+            /* console.log(Object.keys(res.headers)); */
             return res;
           }
-          return '';
         });
-      localStorage.setItem('token', response.headers.get('Authorization'));
+      // localStorage.setItem('token', response.headers.get('Authorization'));
       return response;
     };
     try {
@@ -133,12 +135,19 @@ const initialState = {
   userToken: null, // for storing the JWT
   error: null,
   success: false, // for monitoring the registration process.
+  status: 'idle',
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem('token');
+      state.loading = false;
+      state.status = 'idle'; // deletes token from storage
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
@@ -157,5 +166,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const userActions = userSlice.actions;
+// export const userActions = userSlice.actions;
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;
