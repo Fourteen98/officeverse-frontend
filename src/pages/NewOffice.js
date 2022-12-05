@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createOffice, fetchOffice } from '../redux/offices/officesSlice';
 
@@ -7,8 +7,9 @@ export default function NewOffice() {
   const [office, setOffice] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.user.user);
 
-  const [user, setUser] = useState(1);
+  const [user, setUser] = useState(currentUser.id);
   const [arrayImages, setarrayImages] = useState([]);
 
   const handleChange = (event) => {
