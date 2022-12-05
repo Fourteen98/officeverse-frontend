@@ -79,7 +79,6 @@ export const createUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, { dispatch }) => {
-    console.log('Hello', user);
     dispatch(notificationActions.showNotification({
       message: 'Loggin user..',
       type: 'info',
@@ -98,26 +97,23 @@ export const loginUser = createAsyncThunk(
       })
         .then((res) => {
           if (res.ok) {
-            console.log(res.headers.get('Authorization'));
             localStorage.setItem('token', res.headers.get('Authorization'));
-            return res.json();
+            dispatch(notificationActions.showNotification({
+              message: 'User Logged In successfully!',
+              type: 'success',
+              open: true,
+            }));
+            return res;
           }
-          throw new Error(res);
-        })
-        .then((json) => console.dir(json))
-        .catch((err) => console.error(err));
-
-      dispatch(notificationActions.showNotification({
-        message: 'User Logged In successfully!',
-        type: 'success',
-        open: true,
-      }));
+          return '';
+        });
       localStorage.setItem('token', response.headers.get('Authorization'));
       return response.data;
     };
     try {
       await sendLoginUser();
     } catch (error) {
+      console.log(error);
       dispatch(notificationActions.showNotification({
         message: 'Could not Loggin!',
         type: 'error',
