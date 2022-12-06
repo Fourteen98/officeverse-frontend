@@ -25,6 +25,10 @@ const Reservation = (props) => {
         Reservation
         {id}
       </div>
+      <div>
+        User ID:
+        {user_id}
+      </div>
       <p>
         start_date:
         {start_date}

@@ -1,13 +1,60 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
 
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const currentUser = useSelector((state) => state.user.user);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  const logged = currentUser.id
+    ? (
+      <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+        <li>
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/newoffice" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            New Office
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/myoffices" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            My Offices
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/reserve" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            Reserve
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/my-reservations" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            My reservations
+          </NavLink>
+        </li>
+      </ul>
+    )
+    : (
+      <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+        <li>
+          <NavLink to="/login" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+            SignUp
+          </NavLink>
+        </li>
+      </ul>
+    );
   return (
     <nav className="sticky top-0 z-50 bg-white border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -16,33 +63,7 @@ export default function NavBar() {
           <span className="pt-2 self-center text-md font-semibold whitespace-nowrap">Officeverse</span>
         </NavLink>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
-            <li>
-              <NavLink to="/" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/newoffice" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                New Office
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/myoffices" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                My Offices
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/reserve" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                Reserve
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/my-reservations" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                My reservations
-              </NavLink>
-            </li>
-          </ul>
+          { logged }
         </div>
         <div id="hamburger-menu" className="md:hidden">
           <button type="button" className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none" onClick={toggleModal}>
@@ -53,23 +74,7 @@ export default function NavBar() {
         </div>
         <div id="mobile-modal" className={isModalOpen ? 'h-screen w-screen mt-8 md:hidden' : 'hidden md:hidden'}>
           <div className="w-full h-screen md:block md:w-auto" id="navbar-default">
-            <ul className="flex flex-col p-2 mt-4 gap-4 border-gray-100 rounded-lg bg-gray-50">
-              <li>
-                <NavLink to="/" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/reserve" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                  Reserve
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/my-reservations" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
-                  My reservations
-                </NavLink>
-              </li>
-            </ul>
+            { logged }
           </div>
         </div>
       </div>
