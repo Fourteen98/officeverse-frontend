@@ -30,7 +30,7 @@ const Office = () => {
 
   return (
     <section className="border-2 max-w-full h-screen mx-auto pt-12  px-12 sm:px-16 ">
-      <div className="grid gap-8 justify-items-center xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-1 ">
+      <div className="grid gap-8 justify-items-center xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 ">
         {content}
       </div>
     </section>
