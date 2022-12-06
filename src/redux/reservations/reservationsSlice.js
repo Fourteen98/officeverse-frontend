@@ -5,26 +5,28 @@ import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 import { notificationActions } from '../notification/notificationSlice';
 
-const RESERVATIONS_URL = 'http://127.0.0.1:4000/api/v1/users/1/reservations';
+const RESERVATIONS_URL = 'http://127.0.0.1:4000/api/v1/users/';
 
 export const fetchReservations = createAsyncThunk(
   'reservations/fetchReservations',
-  async () => {
-    const response = await axios.get(RESERVATIONS_URL);
+  async (_, { getState }) => {
+    const state = getState();
+    const response = await axios.get(`${RESERVATIONS_URL}${state.user.user.id}/reservations`);
     return response.data;
   },
 );
 
 export const deleteReservation = createAsyncThunk(
   'reservations/deleteReservation',
-  async (id, { dispatch }) => {
+  async (id, { dispatch, getState }) => {
+    const state = getState();
     dispatch(notificationActions.showNotification({
       message: 'Deleting reservation...',
       type: 'info',
       open: true,
     }));
-    const sendCreateReservation = async () => {
-      const response = await axios.delete(`http://127.0.0.1:4000/api/v1/users/1/reservations/${id}`);
+    const sendDeleteReservation = async () => {
+      const response = await axios.delete(`${RESERVATIONS_URL}${state.user.user.id}/reservations/${id}`);
       dispatch(notificationActions.showNotification({
         message: 'Reservation deleted successfully!',
         type: 'success',
@@ -33,7 +35,7 @@ export const deleteReservation = createAsyncThunk(
       return response.data;
     };
     try {
-      await sendCreateReservation();
+      await sendDeleteReservation();
     } catch (error) {
       dispatch(notificationActions.showNotification({
         message: 'Could not delete reservation!',
@@ -46,14 +48,15 @@ export const deleteReservation = createAsyncThunk(
 
 export const createReservation = createAsyncThunk(
   'reservations/createReservation',
-  async (reservation, { dispatch }) => {
+  async (reservation, { dispatch, getState }) => {
+    const state = getState();
     dispatch(notificationActions.showNotification({
       message: 'Sending reservation..',
       type: 'warning',
       open: true,
     }));
     const sendCreateReservation = async () => {
-      const response = await axios.post(RESERVATIONS_URL, reservation);
+      const response = await axios.post(`${RESERVATIONS_URL}${state.user.user.id}/reservations`, reservation);
       dispatch(notificationActions.showNotification({
         message: 'Reservation created Successfully!',
         type: 'success',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReservation, fetchReservations } from '../redux/reservations/reservationsSlice';
@@ -26,6 +27,7 @@ export default function Reserve() {
 
   const [checkedStatePeripherals, setCheckedStatePeripherals] = useState([]);
   const [arrayPeripherals, setArrayPeripherals] = useState([]);
+  const navigate = useNavigate();
 
   const [servicesPrice, setServicesPrice] = useState(0);
   const [peripheralsPrice, setPeripheralsPrice] = useState(0);
@@ -92,6 +94,7 @@ export default function Reserve() {
       peripheral_ids: arrayPeripherals,
     })).then(() => {
       dispatch(fetchReservations());
+      navigate('/my-reservations');
     });
     setStartDate();
     setEndDate();
