@@ -203,24 +203,26 @@ export default function Reserve() {
         </div>
       </div>
 
-      <button className="bg-main-1 py-2 px-4 rounded text-white hover:bg-cyan-600 font-semibold" type="button" onClick={handleClick}>Create Reservation</button>
-      <div>Summary:</div>
-      <p>
-        Office: $
-        {(officePrice).toFixed(2)}
-      </p>
-      <p>
-        Services: $
-        {(servicesPrice).toFixed(2)}
-      </p>
-      <p>
-        Peripherals: $
-        {(peripheralsPrice).toFixed(2)}
-      </p>
-      <p>
-        Total: $
-        {(total).toFixed(2)}
-      </p>
+      <div className="flex flex-col w-60 m-4 text-right">
+        <div className="text-center font-semibold">SUMMARY</div>
+        <div className="flex">
+          <div className="flex-1">Office:</div>
+          <div className="flex-1">{`$${(officePrice).toFixed(2)}`}</div>
+        </div>
+        <div className="flex">
+          <div className="flex-1">Services:</div>
+          <div className="flex-1">{`$${(servicesPrice).toFixed(2)}`}</div>
+        </div>
+        <div className="flex border-b border-black">
+          <div className="flex-1">Peripherals:</div>
+          <div className="flex-1">{`$${(peripheralsPrice).toFixed(2)}`}</div>
+        </div>
+        <div className="flex mb-4">
+          <div className="flex-1">Total:</div>
+          <div className="flex-1">{`$${(total).toFixed(2)}`}</div>
+        </div>
+        <button className="bg-main-1 py-2 px-4 rounded text-white hover:bg-cyan-600 font-semibold" type="button" onClick={handleClick}>Create Reservation</button>
+      </div>
     </div>
   );
 }
