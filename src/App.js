@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Office from './pages/Office';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Reserve from './pages/Reserve';
 import MyReservations from './pages/MyReservations';
 import './index.css';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/offices/:id" element={<OfficeDetails />} />
         <Route path="/my-reservations" element={<MyReservations />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
