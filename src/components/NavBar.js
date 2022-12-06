@@ -3,16 +3,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user/userSlice';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
+import loggedUser from '../utils/loggedStatus';
 
 export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const currentUser = useSelector((state) => state.user.user);
   const { status } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === 'ttt') {
       navigate('/');
     }
   }, [navigate, status]);
@@ -20,7 +20,7 @@ export default function NavBar() {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
+  const currentUser = loggedUser();
   const logged = currentUser
     ? (
       <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">

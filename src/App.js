@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Office from './pages/Office';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -12,11 +13,26 @@ import Notification from './components/Notification';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import loggedUser from './utils/loggedStatus';
 import './index.css';
+import { fetchCurrentUser } from './redux/user/userSlice';
+import { fetchOffice } from './redux/offices/officesSlice';
+import { fetchReservations } from './redux/reservations/reservationsSlice';
+import { fetchServices } from './redux/services/servicesSlice';
+import { fetchPeripherals } from './redux/peripherals/peripheralsSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser()).then(() => {
+      dispatch(fetchOffice());
+      dispatch(fetchReservations());
+      dispatch(fetchServices());
+      dispatch(fetchPeripherals());
+    }, []);
+  });
   const notification = useSelector((state) => state.notification.notification);
-  const currentUser = useSelector((state) => state.user.user);
+  const currentUser = loggedUser();
 
   const logged = currentUser
     ? (
@@ -30,6 +46,7 @@ function App() {
           <Route path="/myoffices" element={<MyOffices />} />
           <Route path="/offices/:id" element={<OfficeDetails />} />
           <Route path="/my-reservations" element={<MyReservations />} />
+          <Route path="/*" element={<MyOffices />} />
         </Routes>
         <Footer />
       </Router>

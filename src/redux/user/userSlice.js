@@ -15,6 +15,7 @@ const headerUser = {
 export const fetchCurrentUser = createAsyncThunk(
   'user/fetchCurrentUser',
   async () => {
+    console.log(headerUser);
     const response = await axios.get(`${USER_URL}current_user`, headerUser);
     return response.data;
   },
@@ -32,11 +33,6 @@ export const createUser = createAsyncThunk(
     }));
 
     const sendCreateUser = async () => {
-      /* const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }; */
       fetch('http://127.0.0.1:4000/signup', {
         method: 'post',
         headers: {
@@ -100,6 +96,7 @@ export const loginUser = createAsyncThunk(
         .then((res) => {
           if (res.ok) {
             localStorage.setItem('token', res.headers.get('Authorization'));
+            fetchCurrentUser();
             dispatch(notificationActions.showNotification({
               message: 'User Logged In successfully!',
               type: 'success',
@@ -131,7 +128,7 @@ export const loginUser = createAsyncThunk(
 
 const initialState = {
   loading: false,
-  userInfo: {}, // for user object
+  loggedIn: false, // for user object
   userToken: null, // for storing the JWT
   error: null,
   success: false, // for monitoring the registration process.
@@ -156,9 +153,11 @@ export const userSlice = createSlice({
       })
       .addCase(createUser.fulfilled, (state) => {
         state.success = true;
+        state.loggedIn = true;
       })
       .addCase(loginUser.fulfilled, (state) => {
         state.loading = false;
+        state.loggedIn = true;
         // state.userInfo = payload;
         // state.userToken = payload.token;
         state.status = 'succeeded';
