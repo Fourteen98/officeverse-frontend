@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReservation, fetchReservations } from '../redux/reservations/reservationsSlice';
@@ -33,6 +33,12 @@ export default function Reserve() {
   const [peripheralsPrice, setPeripheralsPrice] = useState(0);
   const [officePrice, setOfficePrice] = useState(0);
   const [total, setTotal] = useState(0);
+
+  const location = useLocation();
+  let officeId = 1;
+  if (location.state !== null) {
+    officeId = location.state.officeId;
+  }
 
   useEffect(() => {
     if (servicesStatus === 'succeeded') {
@@ -115,10 +121,13 @@ export default function Reserve() {
 
   useEffect(() => {
     if (officeStatus === 'succeeded') {
-      setOffice(officeList[0].id);
-      setOfficePrice(parseFloat(officeList[0].basic_price));
+      const officeReserve = officeList.find((office) => (office.id === parseInt(officeId, 10)));
+      setOffice(officeReserve.id || officeList[0].id);
+      setOfficePrice(
+        parseFloat(officeReserve.basic_price) || parseFloat(officeList[0].basic_price),
+      );
     }
-  }, [officeList, officeStatus]);
+  }, [officeList, officeStatus, officeId]);
 
   useEffect(() => {
     if (servicesStatus === 'succeeded') {
