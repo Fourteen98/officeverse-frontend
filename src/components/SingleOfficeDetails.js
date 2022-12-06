@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Imageslider from './ImageSlider';
 
-const SingleOffice = (props) => {
+const SingleOfficeDetails = (props) => {
   const {
     title, images, occupancy,
   } = props;
@@ -28,7 +28,7 @@ const SingleOffice = (props) => {
   );
 };
 
-SingleOffice.propTypes = {
+SingleOfficeDetails.propTypes = {
   // id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   // description: PropTypes.string.isRequired,
@@ -40,4 +40,4 @@ SingleOffice.propTypes = {
   // user_id: PropTypes.number.isRequired,
 };
 
-export default SingleOffice;
+export default SingleOfficeDetails;

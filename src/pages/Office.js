@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SingleOffice from '../components/SingleOfficeDetails';
+import SingleOffice from '../components/SingleOffice';
 
 const Office = () => {
   const officeList = useSelector((state) => state.offices.offices);
@@ -29,7 +29,7 @@ const Office = () => {
   }
 
   return (
-    <section className="border-2 max-w-full h-screen mx-auto pt-12  px-12 sm:px-16 ">
+    <section className="max-w-full h-screen mx-auto pt-12  px-12 sm:px-16 ">
       <div className="grid gap-8 justify-items-center xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 ">
         {content}
       </div>
