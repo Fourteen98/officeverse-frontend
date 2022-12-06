@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SingleOffice from '../components/SingleOffice';
+import SingleOffice from '../components/SingleOfficeDetails';
 
 const Office = () => {
   const officeList = useSelector((state) => state.offices.offices);

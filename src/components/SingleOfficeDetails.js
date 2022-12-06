@@ -7,8 +7,7 @@ const SingleOffice = (props) => {
   const {
     title, images, occupancy,
   } = props;
-  const [image, setImage] = React.useState({ currentImage: 0 });
-  
+
   return (
     <div className="border-2 flex h-72 w-96 md:w-auto lg:w-auto xl:w-auto  xxl:w-auto flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
       <div className="relative h-52 w-96 md:w-60 lg:w-64 xl:w-64 xxl:w-64">
