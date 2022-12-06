@@ -6,9 +6,10 @@ import SingleOffice from '../components/SingleOfficeDetails';
 const MyOffices = () => {
   const officeList = useSelector((state) => state.offices.offices);
   const status = useSelector((state) => state.offices.status);
+  const currentUser = useSelector((state) => state.user.user);
 
   let content;
-  const userOffices = officeList.filter((office) => office.user_id === 1);
+  const userOffices = officeList.filter((office) => office.user_id === currentUser.id);
   if (status === 'succeeded') {
     content = userOffices.map((office) => (
       <Link
