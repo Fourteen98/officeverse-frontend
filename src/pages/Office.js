@@ -6,7 +6,6 @@ import SingleOffice from '../components/SingleOffice';
 const Office = () => {
   const officeList = useSelector((state) => state.offices.offices);
   const status = useSelector((state) => state.offices.status);
-  const currentUser = useSelector((state) => state.user.user);
 
   let content;
   if (status === 'succeeded') {
@@ -14,6 +13,7 @@ const Office = () => {
 
       <Link to={`/offices/${office.id}`} key={office.id}>
         <SingleOffice
+          key={office.id}
           id={office.id}
           title={office.title}
           description={office.description}
@@ -30,13 +30,6 @@ const Office = () => {
 
   return (
     <section className="border-2 max-w-7xl h-screen mx-auto pt-6  px-8 sm:px-16 ">
-      <div>
-        <p>{currentUser.id}</p>
-        <p>{currentUser.username}</p>
-        <p>{currentUser.email}</p>
-        <p>{currentUser.first_name}</p>
-        <p>{currentUser.last_name}</p>
-      </div>
       <div className="grid gap-2 justify-items-center xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-1 ">
         {content}
       </div>

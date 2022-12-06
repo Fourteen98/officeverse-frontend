@@ -2,33 +2,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const slideStyles = {
+  width: '100%',
+  height: '100%',
+  borderRadius: '10px',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+};
+
 const SingleOffice = (props) => {
   const {
-    title, images, occupancy, user_id,
+    title, address, basic_price, images,
   } = props;
+
+  const slideStylesWidthBackground = {
+    ...slideStyles,
+    // backgroundImage: `url(${images[currentIndex]})`,
+  };
   return (
-    <div className="border-2 flex h-54 w-auto md:w-auto lg:w-auto xl:w-auto flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
-      <div className="relative h-40 w-full">
-        <img className="object-fill rounded-lg h-40  min-w-full" src={images} alt="office" />
+    <div className="border-2 flex h-72 w-96 md:w-64 lg:w-64 xl:w-64  xxl:w-64 flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
+      <div className="relative h-52 w-96 md:w-60 lg:w-64 xl:w-64 xxl:w-64">
+        <div className={slideStyles}>
+          <div style={slideStylesWidthBackground}>
+            <img src={images[Math.floor(Math.random() * images.length)]} alt="office" className="h-52 rounded-t-xl" />
+          </div>
+        </div>
       </div>
       <div className="flex flex-col p-2">
-        <span className="font-semibold text-xs">
-          User :
-          {user_id}
-        </span>
-        <span className="font-semibold text-xs">
-          Title :
+        <span className="font-semibold text-xs text-gray-600">
           {title}
         </span>
         <span className="text-xs text-gray-400">
-          Occupancy :
-          {occupancy}
+          Address :
+          {address}
         </span>
-        {/* <span className="text-xs text-gray-400">
+        <span className="text-xs text-gray-400">
           Price :
-          $
-          {basicPrice}
-        </span> */}
+          {basic_price}
+        </span>
       </div>
     </div>
 
@@ -40,11 +51,11 @@ SingleOffice.propTypes = {
   title: PropTypes.string.isRequired,
   // description: PropTypes.string.isRequired,
   // area: PropTypes.string.isRequired,
-  occupancy: PropTypes.string.isRequired,
-  images: PropTypes.string.isRequired,
-  // basicPrice: PropTypes.string.isRequired,
-  // address: PropTypes.string.isRequired,
-  user_id: PropTypes.number.isRequired,
+  // occupancy: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  basic_price: PropTypes.number.isRequired,
+  address: PropTypes.string.isRequired,
+  // user_id: PropTypes.number.isRequired,
 };
 
 export default SingleOffice;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import Office from '../components/SingleOffice';
+import SingleOfficeDetails from '../components/SingleOfficeDetails';
 
 const OfficeDetails = () => {
   const officeList = useSelector((state) => state.offices.offices);
@@ -20,7 +20,7 @@ const OfficeDetails = () => {
   return (
     <>
       <h1>Office Details</h1>
-      <Office
+      <SingleOfficeDetails
         key={office.id}
         id={office.id}
         title={office.title}
