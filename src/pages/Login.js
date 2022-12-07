@@ -16,7 +16,7 @@ const LoginPage = () => {
     if (status === 'succeeded') {
       setTimeout(() => navigate('/myoffices'), 1000);
     }
-  }, [navigate, status]);
+  }, [status]);
 
   const submitForm = (data) => {
     dispatch(loginUser(data));

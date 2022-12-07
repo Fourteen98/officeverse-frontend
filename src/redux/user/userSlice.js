@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { setCookie, getCookie } from 'react-use-cookie';
 import axios from 'axios';
 import { notificationActions } from '../notification/notificationSlice';
 
@@ -12,10 +13,11 @@ export const fetchCurrentUser = createAsyncThunk(
   async () => {
     const headerUser = {
       headers: {
-        Authorization: localStorage.getItem('token'),
+        Authorization: getCookie('token'),
       },
     };
     const response = await axios.get(`${USER_URL}current_user`, headerUser);
+    console.log(response.data);
     return response.data;
   },
 );
@@ -94,7 +96,10 @@ export const loginUser = createAsyncThunk(
         // eslint-disable-next-line consistent-return
         .then((res) => {
           if (res.ok) {
-            localStorage.setItem('token', res.headers.get('Authorization'));
+            setCookie('token', res.headers.get('Authorization'), {
+              days: 1,
+              Secure: true,
+            });
             fetchCurrentUser();
             dispatch(notificationActions.showNotification({
               message: 'User Logged In successfully!',
@@ -139,7 +144,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem('token');
+      setCookie('token', '');
       state.loading = false;
       state.status = 'idle'; // deletes token from storage
     },
@@ -148,7 +153,9 @@ export const userSlice = createSlice({
     builder
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
+        console.log(action.payload);
         state.user = action.payload;
+        console.log(state.user.user);
       })
       .addCase(createUser.fulfilled, (state) => {
         state.success = true;

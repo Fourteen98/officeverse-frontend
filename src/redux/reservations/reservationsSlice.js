@@ -4,14 +4,15 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 import { notificationActions } from '../notification/notificationSlice';
+// import { fetchCurrentUser } from '../user/userSlice';
 
 const RESERVATIONS_URL = 'http://127.0.0.1:4000/api/v1/users/';
 
 export const fetchReservations = createAsyncThunk(
   'reservations/fetchReservations',
-  async (_, { getState }) => {
-    const state = getState();
-    const response = await axios.get(`${RESERVATIONS_URL}${state.user.user.id}/reservations`);
+  async (currentUser) => {
+    console.log(currentUser);
+    const response = await axios.get(`${RESERVATIONS_URL}${currentUser.id}/reservations`);
     return response.data;
   },
 );

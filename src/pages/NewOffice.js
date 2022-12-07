@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createOffice, fetchOffice } from '../redux/offices/officesSlice';
+import { fetchCurrentUser } from '../redux/user/userSlice';
 
 export default function NewOffice() {
   const [office, setOffice] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user.user);
-  const [user, setUser] = useState(currentUser.id);
+  console.log(currentUser);
+  const [user, setUser] = useState(currentUser);
   const [arrayImages, setarrayImages] = useState([]);
 
   const handleChange = (event) => {
@@ -16,6 +18,10 @@ export default function NewOffice() {
     const { value } = event.target;
     setOffice((values) => ({ ...values, [name]: value }));
   };
+
+  useEffect(() => {
+    if (!currentUser) dispatch(fetchCurrentUser());
+  }, []);
 
   const handleClick = () => {
     setarrayImages(arrayImages.push(office.images));
@@ -27,7 +33,7 @@ export default function NewOffice() {
       images: arrayImages,
       basic_price: office.price,
       address: office.address,
-      user_id: user,
+      user_id: user.id,
     })).then(() => {
       dispatch(fetchOffice());
       navigate('/myoffices');

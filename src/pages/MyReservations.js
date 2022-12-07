@@ -5,6 +5,7 @@ import Reservation from '../components/Reservation';
 export default function MyReservations() {
   const reservationList = useSelector((state) => state.reservations.reservations);
   const status = useSelector((state) => state.reservations.status);
+  // const currentUser = useSelector((state) => state.user.user);
 
   let content;
   if (status === 'succeeded') {
