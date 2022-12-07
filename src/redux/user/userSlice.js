@@ -6,16 +6,15 @@ import axios from 'axios';
 import { notificationActions } from '../notification/notificationSlice';
 
 const USER_URL = 'http://127.0.0.1:4000/';
-const headerUser = {
-  headers: {
-    Authorization: localStorage.getItem('token'),
-  },
-};
 
 export const fetchCurrentUser = createAsyncThunk(
   'user/fetchCurrentUser',
   async () => {
-    console.log(headerUser);
+    const headerUser = {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    };
     const response = await axios.get(`${USER_URL}current_user`, headerUser);
     return response.data;
   },

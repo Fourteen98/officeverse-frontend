@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Office from './pages/Office';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -15,22 +14,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import loggedUser from './utils/loggedStatus';
 import './index.css';
-import { fetchCurrentUser } from './redux/user/userSlice';
-import { fetchOffice } from './redux/offices/officesSlice';
-import { fetchReservations } from './redux/reservations/reservationsSlice';
-import { fetchServices } from './redux/services/servicesSlice';
-import { fetchPeripherals } from './redux/peripherals/peripheralsSlice';
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCurrentUser()).then(() => {
-      dispatch(fetchOffice());
-      dispatch(fetchReservations());
-      dispatch(fetchServices());
-      dispatch(fetchPeripherals());
-    }, []);
-  });
   const notification = useSelector((state) => state.notification.notification);
   const currentUser = loggedUser();
 

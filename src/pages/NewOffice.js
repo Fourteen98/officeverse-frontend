@@ -8,7 +8,6 @@ export default function NewOffice() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user.user);
-
   const [user, setUser] = useState(currentUser.id);
   const [arrayImages, setarrayImages] = useState([]);
 
