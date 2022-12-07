@@ -21,7 +21,7 @@ const SingleOffice = (props) => {
   };
   return (
     <div className="border-2 flex h-72 w-96 md:w-64 lg:w-64 xl:w-64  xxl:w-64 flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
-      <div className="relative h-52 w-96 md:w-60 lg:w-64 xl:w-64 xxl:w-64">
+      <div className="relative h-52 w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64">
         <div className={slideStyles}>
           <div style={slideStylesWidthBackground}>
             <img src={images[Math.floor(Math.random() * images.length)]} alt="office" className="h-52 rounded-t-xl" />
