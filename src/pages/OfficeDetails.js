@@ -1,21 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SingleOfficeDetails from '../components/SingleOfficeDetails';
 
 const OfficeDetails = () => {
   const officeList = useSelector((state) => state.offices.offices);
   const { id } = useParams();
   const office = officeList.find((office) => office.id === parseInt(id, 10));
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/reserve', {
-      state: {
-        officeId: id,
-      },
-    });
-  };
+  // const handleClick = () => {
+  //   navigate('/reserve', {
+  //     state: {
+  //       officeId: id,
+  //     },
+  //   });
+  // };
 
   return (
     <section className="border-2 max-w h-screen pt-6 px-8 sm:px-16 ">
@@ -31,7 +31,7 @@ const OfficeDetails = () => {
         address={office.address}
         user_id={office.user_id}
       />
-      <button className="bg-main-1" onClick={handleClick} type="button">Reserve</button>
+      {/* <button className="bg-main-1" onClick={handleClick} type="button">Reserve</button> */}
     </section>
   );
 };

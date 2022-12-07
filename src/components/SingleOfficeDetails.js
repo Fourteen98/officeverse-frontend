@@ -1,15 +1,26 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
 // import Imageslider from './ImageSlider';
 
 const SingleOfficeDetails = (props) => {
   const {
-    title, images, occupancy, address,
+    id, title, images, occupancy, address,
   } = props;
   console.log(images[0]);
   console.log(title);
   console.log(occupancy);
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/reserve', {
+      state: {
+        officeId: id,
+      },
+    });
+  };
   return (
     // <div className="border-2 flex h-72 w-96 md:w-auto lg:w-auto xl:w-auto
     // xxl: w-auto flex - col items - center rounded - xl cursor - pointer hover:
@@ -65,7 +76,7 @@ const SingleOfficeDetails = (props) => {
           </dd>
         </dl>
         <div className="mt-4 col-start-1 row-start-3 self-center sm:mt-0 sm:col-start-2 sm:row-start-2 sm:row-span-2 lg:mt-6 lg:col-start-1 lg:row-start-3 lg:row-end-4">
-          <button type="button" className="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Check availability</button>
+          <button type="button" onClick={handleClick} className="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Reserve</button>
         </div>
         <p className="mt-4 text-sm leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 dark:text-slate-400">
           This sunny and spacious room is for those traveling
@@ -81,7 +92,7 @@ const SingleOfficeDetails = (props) => {
 };
 
 SingleOfficeDetails.propTypes = {
-  // id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   // description: PropTypes.string.isRequired,
   // area: PropTypes.string.isRequired,
