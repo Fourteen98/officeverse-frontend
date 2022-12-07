@@ -17,29 +17,6 @@ function Welcome() {
           </div>
         </div>
       </div>
-
-      <footer className="bg-white dark:bg-gray-800 w-full py-8">
-        <div className="max-w-screen-xl px-4 mx-auto">
-          <ul className="flex flex-wrap justify-between max-w-screen-md mx-auto text-lg font-light">
-            <li className="my-2">
-              <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200" href="https://github.com/Fourteen98/officeverse-frontend" target="blank">
-                FrontEnd Repo
-              </a>
-            </li>
-            <li>
-              <h4>
-                Officeverse 2022
-              </h4>
-            </li>
-            <li className="my-2">
-              <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200" href="https://github.com/Fourteen98/officeverse-api" target="blank">
-                BackEnd Repo
-              </a>
-            </li>
-          </ul>
-        </div>
-      </footer>
-
     </div>
   );
 }
