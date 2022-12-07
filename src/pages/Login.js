@@ -1,25 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/user/userSlice';
 
 const LoginPage = () => {
-  const { userInfo, error } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  // redirect authenticated user to profile screen
-  useEffect(() => {
-    if (Object.keys(userInfo).length !== 0) {
-      navigate('/myoffices');
-    }
-  }, [navigate, userInfo]);
-
   const submitForm = (data) => {
-    dispatch(loginUser(data));
+    dispatch(loginUser(data)).then(() => {
+      navigate('/myoffices');
+      window.location.reload();
+    });
   };
 
   return (

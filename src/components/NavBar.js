@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user/userSlice';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
@@ -8,9 +8,16 @@ export default function NavBar() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const handleClick = () => {
+    dispatch(logout());
+    navigate('/welcome');
+    window.location.reload();
   };
 
   const logged = currentUser
@@ -42,7 +49,7 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li>
-          <button type="button" className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={() => dispatch(logout())}>
+          <button type="button" className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={handleClick}>
             Logout
           </button>
         </li>
