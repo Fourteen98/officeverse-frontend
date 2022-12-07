@@ -42,7 +42,7 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li>
-          <button type="button" className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={() => dispatch(logout())}>
+          <button type="button" className=" bg-blue-700 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onClick={() => dispatch(logout())}>
             Logout
           </button>
         </li>

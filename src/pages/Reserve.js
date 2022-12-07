@@ -185,6 +185,11 @@ export default function Reserve() {
                 <label htmlFor={service.name}>
                   {' '}
                   {service.name}
+                  {' '}
+                  {' '}
+                  $
+                  {' '}
+                  {service.price}
                 </label>
                 <br />
               </div>
