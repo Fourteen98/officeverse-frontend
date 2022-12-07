@@ -18,8 +18,7 @@ const OfficeDetails = () => {
   };
 
   return (
-    <>
-      <h1>Office Details</h1>
+    <section className="border-2 max-w h-screen pt-6 px-8 sm:px-16 ">
       <SingleOfficeDetails
         key={office.id}
         id={office.id}
@@ -33,7 +32,7 @@ const OfficeDetails = () => {
         user_id={office.user_id}
       />
       <button className="bg-main-1" onClick={handleClick} type="button">Reserve</button>
-    </>
+    </section>
   );
 };
 
