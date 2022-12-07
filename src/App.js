@@ -18,7 +18,7 @@ function App() {
   const notification = useSelector((state) => state.notification.notification);
   const currentUser = useSelector((state) => state.user.user);
 
-  const logged = currentUser.id
+  const logged = currentUser
     ? (
       <Router>
         {notification && (<Notification type={notification.type} message={notification.message} />)}

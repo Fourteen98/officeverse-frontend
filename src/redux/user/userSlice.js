@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -21,7 +22,9 @@ export const fetchCurrentUser = createAsyncThunk(
 
 export const createUser = createAsyncThunk(
   'user/createUser',
-  async (user, { dispatch }) => {
+  async ({
+    first_name, last_name, username, email, password,
+  }, { dispatch }) => {
     dispatch(notificationActions.showNotification({
       message: 'Sending user..',
       type: 'info',
@@ -29,14 +32,37 @@ export const createUser = createAsyncThunk(
     }));
 
     const sendCreateUser = async () => {
-      const response = await axios.post(`${USER_URL}signup`, user);
+      /* const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }; */
+      fetch('http://127.0.0.1:4000/signup', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: {
+            first_name, last_name, username, email, password,
+          },
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            localStorage.setItem('token', res.headers.get('Authorization'));
+          }
+        });
+      /* const response = await axios.post(`${USER_URL}signup`, {
+        user: {
+          first_name, last_name, username, email, password,
+        },
+      }, config).catch((e) => console.log(e)); */
       dispatch(notificationActions.showNotification({
         message: 'User added successfully!',
         type: 'success',
         open: true,
       }));
-      localStorage.setItem('token', response.headers.get('Authorization'));
-      return response.data;
     };
     try {
       await sendCreateUser();
@@ -60,14 +86,29 @@ export const loginUser = createAsyncThunk(
     }));
 
     const sendLoginUser = async () => {
-      const response = await axios.post(`${USER_URL}login`, user);
-      dispatch(notificationActions.showNotification({
-        message: 'User Logged In successfully!',
-        type: 'success',
-        open: true,
-      }));
+      const response = await fetch('http://127.0.0.1:4000/login', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            localStorage.setItem('token', res.headers.get('Authorization'));
+            dispatch(notificationActions.showNotification({
+              message: 'User Logged In successfully!',
+              type: 'success',
+              open: true,
+            }));
+            return res;
+          }
+          return '';
+        });
       localStorage.setItem('token', response.headers.get('Authorization'));
-      return response.data;
+      return response;
     };
     try {
       await sendLoginUser();
@@ -81,9 +122,17 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-const initialState = {
+/* const initialState = {
   user: '',
   status: 'idle',
+}; */
+
+const initialState = {
+  loading: false,
+  userInfo: {}, // for user object
+  userToken: null, // for storing the JWT
+  error: null,
+  success: false, // for monitoring the registration process.
 };
 
 export const userSlice = createSlice({
@@ -97,9 +146,12 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(createUser.fulfilled, (state) => {
-        state.status = 'succeeded';
+        state.success = true;
       })
       .addCase(loginUser.fulfilled, (state) => {
+        state.loading = false;
+        // state.userInfo = payload;
+        // state.userToken = payload.token;
         state.status = 'succeeded';
       });
   },
