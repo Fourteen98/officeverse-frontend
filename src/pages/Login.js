@@ -20,8 +20,8 @@ const LoginPage = () => {
   return (
     <div className="w-full h-full pb-9 flex justify-center bg-blue-200">
       <form onSubmit={handleSubmit(submitForm)} className="flex justify-center w-full max-w-xl">
-        <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-blue-50 rounded-lg shadow dark:bg-gray-800">
-          <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
+        <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-blue-50 rounded-lg shadow">
+          <div className="mb-6 text-3xl font-light text-center text-gray-800">
             {error && <p>{error}</p>}
             <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
