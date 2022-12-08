@@ -8,8 +8,8 @@ const SingleOffice = (props) => {
   } = props;
 
   return (
-    <div className="border-2 flex h-80 w-48 px-3 md:w-48 lg:w-64 xl:w-64  xxl:w-64 flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
-      <div className="bg-cover bg-center h-full rounded-xl w-48 md:w-48 lg:w-64 xl:w-64 xxl:w-64">
+    <div className="border-2 flex h-80 px-3 w-64  xxl:w-64 flex-col items-center rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition-transform duration-200 ease-out">
+      <div className="bg-cover bg-center h-full rounded-xl w-64 xxl:w-64">
         <img src={images[Math.floor(Math.random() * images.length)]} alt="office" className="h-52 rounded-t-xl w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64" />
       </div>
       <div className="flex flex-col p-2">
