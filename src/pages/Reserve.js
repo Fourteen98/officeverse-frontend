@@ -153,7 +153,7 @@ export default function Reserve() {
   return (
     <div className="w-full flex item-center justify-center flex-col p-2 gap-3 items-center">
       <div className="mx-auto w-full min-w-max min-h-max flex flex-col md:flex-row gap-9 p-4">
-        <div className="w-4/5 p-2 flex flex-col gap-5">
+        <div className="w-auto md:w-4/5 p-2 flex flex-col gap-5">
           <h1 className="text-2xl font-bold text-center">Reserve Your Office</h1>
           <div className="flex items-center gap-2 w-full flex-col">
             <p className="self-start">Choose Office</p>
@@ -190,7 +190,7 @@ export default function Reserve() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-2 max-w-4/5 text-left pt-10 p-4 bg-gray-50 ">
+        <div className="flex flex-col gap-2 w-auto md:max-w-4/5 text-left pt-10 p-4 bg-gray-50 ">
           <div className="text-left font-semibold text-3xl pb-5">Order Summary</div>
           <div className="flex w-full">
             <div className="flex-1 text-lg text-gray-500">Office</div>
