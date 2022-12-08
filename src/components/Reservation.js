@@ -21,11 +21,11 @@ const Reservation = (props) => {
   return (
     <>
       <li className="flex flex-row m-2 w-auto border-gray-400">
-        <div className="shadow border select-none bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
-          <div className="flex flex-col items-center justify-center w-20 h-20 mr-4">
-            <img alt={office.title} src={office.images[0]} className="mx-auto object-cover rounded" />
+        <div className="shadow border select-none bg-white dark:bg-gray-800 rounded-md flex flex-col flex-1 items-center p-4 justify-center md:flex-row">
+          <div className="w-full mb-5 md:mb-0 flex flex-col items-center justify-center mr-4 md:w-20 md:h-20">
+            <img alt={office.title} src={office.images[0]} className="w-full md:mx-auto object-cover rounded" />
           </div>
-          <div className="flex-1 pl-1 md:mr-16">
+          <div className="flex-1 pl-1 md: mx-6">
             <div className="font-medium dark:text-white">
               <strong>
                 {office.title}
@@ -34,32 +34,32 @@ const Reservation = (props) => {
             <div className="text-sm text-gray-600 dark:text-gray-200">
               {office.address}
             </div>
-            <div className="m-3">
-              Services:
-              {services.map((service) => (
-                <div key={service.id}>
-                  <p>
-                    ●
-                    {' '}
-                    {service.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="m-3">
-              Peripherals:
-              {peripherals.map((peripheral) => (
-                <div key={peripheral.id}>
-                  <p>
-                    ●
-                    {' '}
-                    {peripheral.name}
-                  </p>
-                </div>
-              ))}
+            <div className="flex w-full justify-center gap-5">
+              <ul className="m-3 list-disc">
+                <p className="text-sm font-semibold">Services</p>
+                {services.map((service) => (
+                  <li key={service.id}>
+                    <p className="text-xs">
+                      {' '}
+                      {service.name}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <ul className="m-3 list-disc">
+                <p className="text-sm font-semibold">Peripherals</p>
+                {peripherals.map((peripheral) => (
+                  <li key={peripheral.id}>
+                    <p className="text-xs">
+                      {' '}
+                      {peripheral.name}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className="text-xs text-gray-600 dark:text-gray-200">
+          <div className="text-xs text-gray-600 dark:text-gray-200 my-4">
             <p>
               Start Date:
               {' '}
