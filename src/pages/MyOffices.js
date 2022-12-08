@@ -30,7 +30,7 @@ const MyOffices = () => {
   }
 
   return (
-    <section className="border-2 max-w h-screen pt-6 px-8 sm:px-16">
+    <section className="border-2 max-w h-screen pt-6 px-8 sm:px-12">
       <div className="grid gap-4 justify-items-center xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 ">
         {content}
       </div>
