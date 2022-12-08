@@ -9,9 +9,6 @@ const SingleOfficeDetails = (props) => {
   const {
     id, title, images, occupancy, address,
   } = props;
-  console.log(images[0]);
-  console.log(title);
-  console.log(occupancy);
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -22,23 +19,6 @@ const SingleOfficeDetails = (props) => {
     });
   };
   return (
-    // <div className="border-2 flex h-72 w-96 md:w-auto lg:w-auto xl:w-auto
-    // xxl: w-auto flex - col items - center rounded - xl cursor - pointer hover:
-    // bg - gray - 100 hover: scale - 105 transition - transform duration - 200 ease - out">
-    //   <div className="relative h-52 w-96 md:w-60 lg:w-64 xl:w-64 xxl:w-64">
-    //     <Imageslider slides={images} />
-    //   </div>
-    //   <div className="flex flex-col p-2">
-    //     <span className="font-semibold text-xs">
-    //       Title :
-    //       {title}
-    //     </span>
-    //     <span className="text-xs text-gray-400">
-    //       Occupancy :
-    //       {occupancy}
-    //     </span>
-    //   </div>
-    // </div>
     <section className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
       <div className="max-w-4xl mx-auto grid grid-cols-1 lg:max-w-5xl lg:gap-x-20 lg:grid-cols-2">
         <div className="relative p-3 col-start-1 row-start-1 flex flex-col-reverse rounded-lg bg-gradient-to-t from-black/75 via-black/0 sm:bg-none sm:row-start-2 sm:p-0 lg:row-start-1">
@@ -59,7 +39,7 @@ const SingleOfficeDetails = (props) => {
             <span>
               4.89
               <span className="text-slate-400 font-normal">
-                (128)
+                {occupancy}
               </span>
             </span>
           </dd>
