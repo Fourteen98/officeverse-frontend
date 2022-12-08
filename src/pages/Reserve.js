@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
+import Select from 'react-select';
+// import makeAnimated from 'react-select/animated';
 import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,31 +66,16 @@ export default function Reserve() {
     }
   }, [checkedStatePeripherals, peripheralsStatus]);
 
-  const calculateTotalPrice = (updatedCheckedState, list) => {
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum + parseFloat(list[index].price);
-        }
-        return sum;
-      },
-      0,
-    );
-    return totalPrice;
+  const handleOnChangeServices = (services) => {
+    setServicesPrice(services.reduce(
+      (sum, service) => sum + parseFloat(service.price), 0,
+    ));
   };
 
-  const handleOnChangeServices = (position) => {
-    const updatedCheckedStateServices = checkedStateServices.map((item, index) => (
-      index === position ? !item : item));
-    setCheckedStateServices(updatedCheckedStateServices);
-    setServicesPrice(calculateTotalPrice(updatedCheckedStateServices, servicesList));
-  };
-
-  const handleOnChangePeripherals = (position) => {
-    const updatedCheckedStatePeripherals = checkedStatePeripherals.map((item, index) => (
-      index === position ? !item : item));
-    setCheckedStatePeripherals(updatedCheckedStatePeripherals);
-    setPeripheralsPrice(calculateTotalPrice(updatedCheckedStatePeripherals, peripheralsList));
+  const handleOnChangePeripherals = (peripherals) => {
+    setPeripheralsPrice(peripherals.reduce(
+      (sum, peripheral) => sum + parseFloat(peripheral.price), 0,
+    ));
   };
 
   const handleClick = () => {
@@ -145,95 +132,84 @@ export default function Reserve() {
     setTotal(officePrice + servicesPrice + peripheralsPrice);
   }, [officePrice, servicesPrice, peripheralsPrice]);
 
+  const peripheralOptions = [];
+  for (let i = 0; i < peripheralsList.length; i += 1) {
+    peripheralOptions.push({
+      value: peripheralsList[i].id,
+      label: peripheralsList[i].name,
+      price: peripheralsList[i].price,
+    });
+  }
+
+  const servicesOptions = [];
+  for (let i = 0; i < servicesList.length; i += 1) {
+    servicesOptions.push({
+      value: servicesList[i].id,
+      label: servicesList[i].name,
+      price: servicesList[i].price,
+    });
+  }
+
   return (
-    <div className="w-full flex flex-col p-12 gap-3 items-center">
-      <div className="flex items-center gap-2 w-full flex-col">
-        <p className="self-start">Choose an office</p>
-        <select className="w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="offices" id="offices" value={office} onChange={handleOfficeChange}>
-          {officeList.map((office) => (
-            <option key={office.id} value={office.id}>
-              {office.title}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="flex w-full gap-2">
-        <div className="flex-1 w-full">
-          <p>Start Date</p>
-          <DatePicker className="w-full border border-black h-10 rounded text-center" selected={startDate} onChange={(date) => setStartDate(date)} />
-        </div>
-        <div className="flex-1 w-full">
-          <p>End Date</p>
-          <DatePicker className="w-full border border-black h-10 rounded text-center" selected={endDate} onChange={(date) => setEndDate(date)} />
-        </div>
-      </div>
-
-      <div className="flex w-full gap-2">
-        <div className="flex-1 w-full">
-          <p>Choose your services</p>
-          <div>
-            {servicesList.map((service, index) => (
-              <div key={`service ${service.id}`}>
-                <input
-                  type="checkbox"
-                  name={service.name}
-                  id={service.name}
-                  value={service.id}
-                  checked={checkedStateServices[index] || ''}
-                  onChange={() => handleOnChangeServices(index)}
-                />
-                <label htmlFor={service.name}>
-                  {' '}
-                  {service.name}
-                </label>
-                <br />
+    <div className="w-full flex item-center justify-center flex-col p-2 gap-3 items-center">
+      <div className="mx-auto w-full min-w-max min-h-max flex flex-col md:flex-row gap-9 p-4">
+        <div className="w-auto md:w-4/5 p-2 flex flex-col gap-5">
+          <h1 className="text-2xl font-bold text-center">Reserve Your Office</h1>
+          <div className="flex items-center gap-2 w-full flex-col">
+            <p className="self-start">Choose Office</p>
+            <select className="w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="offices" id="offices" value={office} onChange={handleOfficeChange}>
+              {officeList.map((office) => (
+                <option key={office.id} value={office.id}>
+                  {office.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col md:flex-row w-full gap-2">
+            <div className="flex-1 w-full">
+              <p>Start Date</p>
+              <DatePicker className="w-full border border-black h-10 rounded text-center" selected={startDate} onChange={(date) => setStartDate(date)} />
+            </div>
+            <div className="flex-1 w-full">
+              <p>End Date</p>
+              <DatePicker className="w-full border border-black h-10 rounded text-center" selected={endDate} onChange={(date) => setEndDate(date)} />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row w-full gap-2">
+            <div className="flex-1 w-full">
+              <p>Choose Your Services</p>
+              <div className="w-full">
+                <Select options={servicesOptions} isMulti onChange={(services) => handleOnChangeServices(services)} /> {/* eslint-disable-line */}
               </div>
-            ))}
+            </div>
+            <div className="flex-1 w-full">
+              <p>Choose Your Peripherals</p>
+              <div className="w-full">
+                <Select options={peripheralOptions} isMulti onChange={(peripherals) => handleOnChangePeripherals(peripherals)} /> {/* eslint-disable-line */}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex-1 w-full">
-          <p>Choose your peripherals</p>
-          <div>
-            {peripheralsList.map((peripheral, index) => (
-              <div key={`peripheral ${peripheral.id}`}>
-                <input
-                  type="checkbox"
-                  name={peripheral.name}
-                  id={peripheral.name}
-                  value={peripheral.id}
-                  checked={checkedStatePeripherals[index] || ''}
-                  onChange={() => handleOnChangePeripherals(index)}
-                />
-                <label htmlFor={peripheral.name}>
-                  {' '}
-                  {peripheral.name}
-                </label>
-                <br />
-              </div>
-            ))}
+        <div className="flex flex-col gap-2 w-auto md:max-w-4/5 text-left pt-10 p-4 bg-gray-50 ">
+          <div className="text-left font-semibold text-3xl pb-5">Order Summary</div>
+          <div className="flex w-full">
+            <div className="flex-1 text-lg text-gray-500">Office</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(officePrice).toFixed(2)}`}</div>
           </div>
+          <div className="flex w-full">
+            <div className="flex-1 text-lg text-gray-500">Services</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(servicesPrice).toFixed(2)}`}</div>
+          </div>
+          <div className="flex pb-8">
+            <div className="flex-1 text-lg text-gray-500">Peripherals</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(peripheralsPrice).toFixed(2)}`}</div>
+          </div>
+          <div className="flex mb-4">
+            <div className="flex-1 text-xl font-semibold">Estimated Total</div>
+            <div className="flex-1 font-semibold text-gray-800 text-right">{`$${(total).toFixed(2)}`}</div>
+          </div>
+          <button className="bg-main-1 py-2 px-4 rounded text-white hover:bg-cyan-600 font-semibold" type="button" onClick={handleClick}>Create Reservation</button>
         </div>
-      </div>
-
-      <div className="flex flex-col w-60 m-4 text-right">
-        <div className="text-center font-semibold">SUMMARY</div>
-        <div className="flex">
-          <div className="flex-1">Office:</div>
-          <div className="flex-1">{`$${(officePrice).toFixed(2)}`}</div>
-        </div>
-        <div className="flex">
-          <div className="flex-1">Services:</div>
-          <div className="flex-1">{`$${(servicesPrice).toFixed(2)}`}</div>
-        </div>
-        <div className="flex border-b border-black">
-          <div className="flex-1">Peripherals:</div>
-          <div className="flex-1">{`$${(peripheralsPrice).toFixed(2)}`}</div>
-        </div>
-        <div className="flex mb-4">
-          <div className="flex-1">Total:</div>
-          <div className="flex-1">{`$${(total).toFixed(2)}`}</div>
-        </div>
-        <button className="bg-main-1 py-2 px-4 rounded text-white hover:bg-cyan-600 font-semibold" type="button" onClick={handleClick}>Create Reservation</button>
       </div>
     </div>
   );
