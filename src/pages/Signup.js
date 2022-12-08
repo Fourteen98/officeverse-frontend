@@ -23,15 +23,17 @@ const Signup = () => {
     // if (Object.keys(userInfo).length !== 0) navigate('/user-profile');
   }, [navigate, success]);
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     if (data.password !== data.confirmPassword) {
       alert('Password mismatch');
       return;
     }
     // transform email string to lowercase to avoid case sensitivity issues during login
     data.email = data.email.toLowerCase();
-    dispatch(createUser(data));
-    navigate('/');
+    await dispatch(createUser(data)).then(() => {
+      navigate('/myoffices');
+      window.location.reload();
+    });
   };
 
   return (

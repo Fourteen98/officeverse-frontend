@@ -47,9 +47,9 @@ export default function NewOffice() {
           </div>
           <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
             <div className="col-span-2">
-              <div className=" relative ">
+              <div className="relative ">
                 <input
-                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   placeholder="Office Name"
                   type="text"
                   name="title"
@@ -61,7 +61,7 @@ export default function NewOffice() {
             <div className="col-span-2">
               <div className=" relative ">
                 <input
-                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                   placeholder="Office Area"
                   type="number"
                   name="area"

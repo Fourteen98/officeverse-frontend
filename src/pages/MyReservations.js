@@ -24,9 +24,10 @@ export default function MyReservations() {
   }
 
   return (
-    <>
-      <h1>Reservation List</h1>
-      {content}
-    </>
+    <div className="container flex flex-col items-center justify-center w-full mx-auto">
+      <ul className="flex flex-col">
+        {content}
+      </ul>
+    </div>
   );
 }

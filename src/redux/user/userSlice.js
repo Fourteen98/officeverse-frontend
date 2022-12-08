@@ -37,6 +37,7 @@ export const createUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       }; */
+      console.log('Before Fetch');
       fetch('http://127.0.0.1:4000/signup', {
         method: 'post',
         headers: {
