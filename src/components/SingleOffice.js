@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const SingleOffice = (props) => {
   const {
-    title, address, basic_price, images,
+    title, address, basicPrice, images,
   } = props;
 
   return (
@@ -17,7 +17,7 @@ const SingleOffice = (props) => {
         </div>
       </div>
       <div className="flex flex-col p-2">
-        <span className="font-semibold text-xs text-gray-600">
+        <span className="text-transform: capitalize font-semibold text-xs text-gray-600">
           {title}
         </span>
         <span className="text-xs text-gray-400">
@@ -26,7 +26,7 @@ const SingleOffice = (props) => {
         </span>
         <span className="text-xs text-gray-400">
           Price :
-          {basic_price}
+          {basicPrice}
         </span>
       </div>
     </div>
@@ -41,7 +41,7 @@ SingleOffice.propTypes = {
   // area: PropTypes.string.isRequired,
   // occupancy: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
-  basic_price: PropTypes.number.isRequired,
+  basicPrice: PropTypes.number.isRequired,
   address: PropTypes.string.isRequired,
   // user_id: PropTypes.number.isRequired,
 };

@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReservation, fetchReservations } from '../redux/reservations/reservationsSlice';
 
-export default function Reserve() {
+const Reserve = () => {
   const officeList = useSelector((state) => state.offices.offices);
   const officeStatus = useSelector((state) => state.offices.status);
 
@@ -213,4 +213,6 @@ export default function Reserve() {
       </div>
     </div>
   );
-}
+};
+
+export default Reserve;

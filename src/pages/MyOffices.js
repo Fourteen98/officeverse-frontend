@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SingleOffice from '../components/SingleOfficeDetails';
+import SingleOffice from '../components/SingleOffice';
 
 const MyOffices = () => {
   const officeList = useSelector((state) => state.offices.offices);
@@ -12,11 +12,9 @@ const MyOffices = () => {
   const userOffices = officeList.filter((office) => office.user_id === currentUser.id);
   if (status === 'succeeded') {
     content = userOffices.map((office) => (
-      <Link
-        to={`/offices/${office.id}`}
-        key={office.id}
-      >
+      <Link to={`/offices/${office.id}`} key={office.id}>
         <SingleOffice
+          key={office.id}
           id={office.id}
           title={office.title}
           description={office.description}
@@ -32,9 +30,11 @@ const MyOffices = () => {
   }
 
   return (
-    <>
-      {content}
-    </>
+    <section className="border-2 max-w h-screen pt-6 px-8 sm:px-16">
+      <div className="grid gap-4 justify-items-center xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 ">
+        {content}
+      </div>
+    </section>
   );
 };
 

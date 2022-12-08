@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import './index.css';
 
-function App() {
+const App = () => {
   const notification = useSelector((state) => state.notification.notification);
   const currentUser = useSelector((state) => state.user.user);
 
@@ -48,10 +48,10 @@ function App() {
       </Router>
     );
   return (
-    <div>
+    <div className="w-full h-full">
       {logged}
     </div>
   );
-}
+};
 
 export default App;
