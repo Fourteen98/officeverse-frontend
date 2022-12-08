@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Reservation from '../components/Reservation';
 
-export default function MyReservations() {
+const MyReservations = () => {
   const reservationList = useSelector((state) => state.reservations.reservations);
   const status = useSelector((state) => state.reservations.status);
 
@@ -30,4 +30,5 @@ export default function MyReservations() {
       </ul>
     </div>
   );
-}
+};
+export default MyReservations;

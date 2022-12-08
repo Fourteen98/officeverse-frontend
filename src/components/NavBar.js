@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user/userSlice';
 import officeverseLogo from '../assets/images/officeverse-logo.png';
 
-export default function NavBar() {
+const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function NavBar() {
 
   const logged = currentUser
     ? (
-      <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+      <ul className="flex justify-between items-center p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
         <li>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             Home
@@ -49,7 +49,7 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li>
-          <button type="button" className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={handleClick}>
+          <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold mx-2 py-1 px-3 rounded" onClick={handleClick}>
             Logout
           </button>
         </li>
@@ -73,7 +73,7 @@ export default function NavBar() {
     <nav className="sticky top-0 z-50 bg-white border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/" className="flex items-center">
-          <img src={officeverseLogo} className="w-8 h-6 mr-2 sm:h-9 md:w-12 " alt="officeverse Logo" />
+          <img src={officeverseLogo} className="w-9 h-6 mr-2 sm:h-9 md:w-12 " alt="officeverse Logo" />
           <span className="pt-2 self-center text-md font-semibold whitespace-nowrap">Officeverse</span>
         </NavLink>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -94,4 +94,6 @@ export default function NavBar() {
       </div>
     </nav>
   );
-}
+};
+
+export default NavBar;

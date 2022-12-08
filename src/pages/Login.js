@@ -12,13 +12,13 @@ const LoginPage = () => {
 
   const submitForm = (data) => {
     dispatch(loginUser(data)).then(() => {
-      navigate('/myoffices');
+      navigate('/');
       window.location.reload();
     });
   };
 
   return (
-    <div className="w-full h-auto pb-9 flex justify-center bg-blue-200">
+    <div className="w-full h-full pb-9 flex justify-center bg-blue-200">
       <form onSubmit={handleSubmit(submitForm)} className="flex justify-center w-full max-w-xl">
         <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-blue-50 rounded-lg shadow dark:bg-gray-800">
           <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">

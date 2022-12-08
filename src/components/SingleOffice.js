@@ -12,12 +12,12 @@ const SingleOffice = (props) => {
       <div className="relative h-52 w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64">
         <div className="bg-cover bg-center h-full rounded-xl w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64">
           <div className="bg-cover bg-center h-full rounded-xl w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64">
-            <img src={images[Math.floor(Math.random() * images.length)]} alt="office" className="h-52 rounded-t-xl w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64" />
+            <img src={images[Math.floor(Math.random() * images.length)]} alt={title} className="h-52 rounded-t-xl w-96 md:w-64 lg:w-64 xl:w-64 xxl:w-64" />
           </div>
         </div>
       </div>
       <div className="flex flex-col p-2">
-        <span className="font-semibold text-xs text-gray-600">
+        <span className="text-transform: capitalize font-semibold text-xs text-gray-600">
           {title}
         </span>
         <span className="text-xs text-gray-400">

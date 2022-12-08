@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SingleOffice from '../components/SingleOffice';
 
@@ -11,18 +12,20 @@ const MyOffices = () => {
   const userOffices = officeList.filter((office) => office.user_id === currentUser.id);
   if (status === 'succeeded') {
     content = userOffices.map((office) => (
-      <SingleOffice
-        key={office.id}
-        id={office.id}
-        title={office.title}
-        description={office.description}
-        area={office.area}
-        occupancy={office.occupancy}
-        images={office.images}
-        basicPrice={office.basic_price}
-        address={office.address}
-        user_id={office.user_id}
-      />
+      <Link to={`/offices/${office.id}`} key={office.id}>
+        <SingleOffice
+          key={office.id}
+          id={office.id}
+          title={office.title}
+          description={office.description}
+          area={office.area}
+          occupancy={office.occupancy}
+          images={office.images}
+          basicPrice={office.basic_price}
+          address={office.address}
+          user_id={office.user_id}
+        />
+      </Link>
     ));
   }
 
