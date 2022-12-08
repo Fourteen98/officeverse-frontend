@@ -22,9 +22,9 @@ const NavBar = () => {
 
   const logged = currentUser
     ? (
-      <ul className="flex justify-between items-center p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+      <>
         <li>
-          <NavLink to="/" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+          <NavLink to="/" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 bg-blue-700 text-gray-400 hover:text-gray-400 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white md:bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             Home
           </NavLink>
         </li>
@@ -53,21 +53,21 @@ const NavBar = () => {
             Logout
           </button>
         </li>
-      </ul>
+      </>
     )
     : (
-      <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+      <>
         <li>
-          <NavLink to="/login" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+          <NavLink to="/login" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             Login
           </NavLink>
         </li>
         <li>
-          <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+          <NavLink to="/signup" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             SignUp
           </NavLink>
         </li>
-      </ul>
+      </>
     );
   return (
     <nav className="sticky top-0 z-50 bg-white border-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
@@ -77,7 +77,9 @@ const NavBar = () => {
           <span className="pt-2 self-center text-md font-semibold whitespace-nowrap">Officeverse</span>
         </NavLink>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          {logged}
+          <ul className="flex flex-col gap-4 p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+            {logged}
+          </ul>
         </div>
         <div id="hamburger-menu" className="md:hidden">
           <button type="button" className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none" onClick={toggleModal}>
@@ -86,9 +88,11 @@ const NavBar = () => {
             </svg>
           </button>
         </div>
-        <div id="mobile-modal" className={isModalOpen ? 'h-screen w-screen mt-8 md:hidden' : 'hidden md:hidden'}>
-          <div className="w-full h-screen md:block md:w-auto" id="navbar-default">
-            {logged}
+        <div id="mobile-modal" className={isModalOpen ? 'absolute top-0 left-0 h-screen w-full mt-8 md:hidden' : 'hidden md:hidden'}>
+          <div className="w-full h-screen  md:w-auto" id="navbar-default">
+            <ul className="h-screen flex flex-col gap-4 p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+              {logged}
+            </ul>
           </div>
         </div>
       </div>
