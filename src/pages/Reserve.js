@@ -67,12 +67,28 @@ const Reserve = () => {
   }, [checkedStatePeripherals, peripheralsStatus]);
 
   const handleOnChangeServices = (services) => {
+    // {value: , label:, price: }
+    const checkedServices = [];
+    for (let i = 0; i < services.length; i += 1) {
+      checkedServices.push(services[i].value);
+    }
+    setArrayServices(checkedServices);
     setServicesPrice(services.reduce(
       (sum, service) => sum + parseFloat(service.price), 0,
     ));
   };
 
   const handleOnChangePeripherals = (peripherals) => {
+  // {value: , label:, price: }
+    const checkedPeripherals = [];
+    for (let i = 0; i < peripherals.length; i += 1) {
+      checkedPeripherals.push(peripherals[i].value);
+    }
+    setArrayPeripherals(checkedPeripherals);
+    peripherals.map((peripheral) => {
+      checkedPeripherals.push(peripheral.name);
+      return 0;
+    });
     setPeripheralsPrice(peripherals.reduce(
       (sum, peripheral) => sum + parseFloat(peripheral.price), 0,
     ));
