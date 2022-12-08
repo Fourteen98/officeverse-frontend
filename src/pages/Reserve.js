@@ -66,28 +66,16 @@ export default function Reserve() {
     }
   }, [checkedStatePeripherals, peripheralsStatus]);
 
-  const calculateTotalPrice = (updatedCheckedState, list) => {
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum + parseFloat(list[index].price);
-        }
-        return sum;
-      },
-      0,
-    );
-    return totalPrice;
+  const handleOnChangeServices = (services) => {
+    setServicesPrice(services.reduce(
+      (sum, service) => sum + parseFloat(service.price), 0,
+    ));
   };
 
-  const handleOnChangeServices = (position) => {
-    const updatedCheckedStateServices = checkedStateServices.map((item, index) => (
-      index === position ? !item : item));
-    setCheckedStateServices(updatedCheckedStateServices);
-    setServicesPrice(calculateTotalPrice(updatedCheckedStateServices, servicesList));
-  };
-
-  const handleOnChangePeripherals = (choices) => {
-    setPeripheralsPrice(choices.reduce((sum, item) => sum + parseFloat(item.price), 0));
+  const handleOnChangePeripherals = (peripherals) => {
+    setPeripheralsPrice(peripherals.reduce(
+      (sum, peripheral) => sum + parseFloat(peripheral.price), 0,
+    ));
   };
 
   const handleClick = () => {
@@ -152,6 +140,16 @@ export default function Reserve() {
       price: peripheralsList[i].price,
     });
   }
+
+  const servicesOptions = [];
+  for (let i = 0; i < servicesList.length; i += 1) {
+    servicesOptions.push({
+      value: servicesList[i].id,
+      label: servicesList[i].name,
+      price: servicesList[i].price,
+    });
+  }
+
   return (
     <div className="w-full flex item-center justify-center flex-col p-12 gap-3 items-center">
       <div className="mx-auto w-full max-w-[550px]">
@@ -179,35 +177,14 @@ export default function Reserve() {
         <div className="flex w-full gap-2">
           <div className="flex-1 w-full">
             <p>Choose your services</p>
-            <div>
-              {servicesList.map((service, index) => (
-                <div key={`service ${service.id}`}>
-                  <input
-                    type="checkbox"
-                    name={service.name}
-                    id={service.name}
-                    value={service.id}
-                    checked={checkedStateServices[index] || ''}
-                    onChange={() => handleOnChangeServices(index)}
-                  />
-                  <label htmlFor={service.name}>
-                    {' '}
-                    {service.name}
-                    {' '}
-                    {' '}
-                    $
-                    {' '}
-                    {service.price}
-                  </label>
-                  <br />
-                </div>
-              ))}
+            <div className="w-full">
+              <Select options={servicesOptions} isMulti onChange={(services) => handleOnChangeServices(services)} /> {/* eslint-disable-line */}
             </div>
           </div>
           <div className="flex-1 w-full">
             <p>Choose your peripherals</p>
             <div className="w-full">
-              <Select options={peripheralOptions} isMulti onChange={(choices) => handleOnChangePeripherals(choices)} /> {/* eslint-disable-line */}
+              <Select options={peripheralOptions} isMulti onChange={(peripherals) => handleOnChangePeripherals(peripherals)} /> {/* eslint-disable-line */}
             </div>
           </div>
         </div>
