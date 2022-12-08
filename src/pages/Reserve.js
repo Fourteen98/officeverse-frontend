@@ -154,8 +154,9 @@ export default function Reserve() {
     <div className="w-full flex item-center justify-center flex-col p-2 gap-3 items-center">
       <div className="mx-auto w-full min-w-max min-h-max flex flex-col md:flex-row gap-9 p-4">
         <div className="w-4/5 p-2 flex flex-col gap-5">
+          <h1 className="text-2xl font-bold text-center">Reserve Your Office</h1>
           <div className="flex items-center gap-2 w-full flex-col">
-            <p className="self-start">Choose your office</p>
+            <p className="self-start">Choose Office</p>
             <select className="w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="offices" id="offices" value={office} onChange={handleOfficeChange}>
               {officeList.map((office) => (
                 <option key={office.id} value={office.id}>
@@ -176,13 +177,13 @@ export default function Reserve() {
           </div>
           <div className="flex flex-col md:flex-row w-full gap-2">
             <div className="flex-1 w-full">
-              <p>Choose your services</p>
+              <p>Choose Your Services</p>
               <div className="w-full">
                 <Select options={servicesOptions} isMulti onChange={(services) => handleOnChangeServices(services)} /> {/* eslint-disable-line */}
               </div>
             </div>
             <div className="flex-1 w-full">
-              <p>Choose your peripherals</p>
+              <p>Choose Your Peripherals</p>
               <div className="w-full">
                 <Select options={peripheralOptions} isMulti onChange={(peripherals) => handleOnChangePeripherals(peripherals)} /> {/* eslint-disable-line */}
               </div>
