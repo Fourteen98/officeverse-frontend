@@ -33,7 +33,6 @@ const MyOffices = () => {
 
   return (
     <>
-      <h1>My Office List</h1>
       {content}
     </>
   );

@@ -25,7 +25,6 @@ export default function MyReservations() {
 
   return (
     <>
-      <h1>Reservation List</h1>
       {content}
     </>
   );
