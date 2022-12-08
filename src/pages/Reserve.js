@@ -151,60 +151,61 @@ export default function Reserve() {
   }
 
   return (
-    <div className="w-full flex item-center justify-center flex-col p-12 gap-3 items-center">
-      <div className="mx-auto w-full max-w-[550px]">
-        <div className="flex items-center gap-2 w-full flex-col">
-          <p className="self-start">Choose an office</p>
-          <select className="w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="offices" id="offices" value={office} onChange={handleOfficeChange}>
-            {officeList.map((office) => (
-              <option key={office.id} value={office.id}>
-                {office.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex w-full gap-2">
-          <div className="flex-1 w-full">
-            <p>Start Date</p>
-            <DatePicker className="w-full border border-black h-10 rounded text-center" selected={startDate} onChange={(date) => setStartDate(date)} />
+    <div className="w-full flex item-center justify-center flex-col p-2 gap-3 items-center">
+      <div className="mx-auto w-full min-w-max min-h-max flex flex-col md:flex-row gap-9 p-4">
+        <div className="w-4/5 p-2 flex flex-col gap-5">
+          <div className="flex items-center gap-2 w-full flex-col">
+            <p className="self-start">Choose your office</p>
+            <select className="w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="offices" id="offices" value={office} onChange={handleOfficeChange}>
+              {officeList.map((office) => (
+                <option key={office.id} value={office.id}>
+                  {office.title}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="flex-1 w-full">
-            <p>End Date</p>
-            <DatePicker className="w-full border border-black h-10 rounded text-center" selected={endDate} onChange={(date) => setEndDate(date)} />
-          </div>
-        </div>
-
-        <div className="flex w-full gap-2">
-          <div className="flex-1 w-full">
-            <p>Choose your services</p>
-            <div className="w-full">
-              <Select options={servicesOptions} isMulti onChange={(services) => handleOnChangeServices(services)} /> {/* eslint-disable-line */}
+          <div className="flex flex-col md:flex-row w-full gap-2">
+            <div className="flex-1 w-full">
+              <p>Start Date</p>
+              <DatePicker className="w-full border border-black h-10 rounded text-center" selected={startDate} onChange={(date) => setStartDate(date)} />
+            </div>
+            <div className="flex-1 w-full">
+              <p>End Date</p>
+              <DatePicker className="w-full border border-black h-10 rounded text-center" selected={endDate} onChange={(date) => setEndDate(date)} />
             </div>
           </div>
-          <div className="flex-1 w-full">
-            <p>Choose your peripherals</p>
-            <div className="w-full">
-              <Select options={peripheralOptions} isMulti onChange={(peripherals) => handleOnChangePeripherals(peripherals)} /> {/* eslint-disable-line */}
+          <div className="flex flex-col md:flex-row w-full gap-2">
+            <div className="flex-1 w-full">
+              <p>Choose your services</p>
+              <div className="w-full">
+                <Select options={servicesOptions} isMulti onChange={(services) => handleOnChangeServices(services)} /> {/* eslint-disable-line */}
+              </div>
+            </div>
+            <div className="flex-1 w-full">
+              <p>Choose your peripherals</p>
+              <div className="w-full">
+                <Select options={peripheralOptions} isMulti onChange={(peripherals) => handleOnChangePeripherals(peripherals)} /> {/* eslint-disable-line */}
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full items-center justify-center text-center pt-10">
-          <div className="text-center font-semibold text-3xl">Total</div>
-          <div className="flex">
-            <div className="flex-1">Office:</div>
-            <div className="flex-1">{`$${(officePrice).toFixed(2)}`}</div>
+        <div className="flex flex-col gap-2 max-w-4/5 text-left pt-10 p-4 bg-gray-50 ">
+          <div className="text-left font-semibold text-3xl pb-5">Order Summary</div>
+          <div className="flex w-full">
+            <div className="flex-1 text-lg text-gray-500">Office</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(officePrice).toFixed(2)}`}</div>
           </div>
-          <div className="flex">
-            <div className="flex-1">Services:</div>
-            <div className="flex-1">{`$${(servicesPrice).toFixed(2)}`}</div>
+          <div className="flex w-full">
+            <div className="flex-1 text-lg text-gray-500">Services</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(servicesPrice).toFixed(2)}`}</div>
           </div>
-          <div className="flex border-b border-black">
-            <div className="flex-1">Peripherals:</div>
-            <div className="flex-1">{`$${(peripheralsPrice).toFixed(2)}`}</div>
+          <div className="flex pb-8">
+            <div className="flex-1 text-lg text-gray-500">Peripherals</div>
+            <div className="flex-1 font-semibold text-gray-600 text-right">{`$${(peripheralsPrice).toFixed(2)}`}</div>
           </div>
           <div className="flex mb-4">
-            <div className="flex-1">Total:</div>
-            <div className="flex-1">{`$${(total).toFixed(2)}`}</div>
+            <div className="flex-1 text-xl font-semibold">Estimated Total</div>
+            <div className="flex-1 font-semibold text-gray-800 text-right">{`$${(total).toFixed(2)}`}</div>
           </div>
           <button className="bg-main-1 py-2 px-4 rounded text-white hover:bg-cyan-600 font-semibold" type="button" onClick={handleClick}>Create Reservation</button>
         </div>
