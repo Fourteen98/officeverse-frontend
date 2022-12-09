@@ -77,7 +77,7 @@ const NavBar = () => {
           <span className="pt-2 self-center text-md font-semibold whitespace-nowrap">Officeverse</span>
         </NavLink>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="flex flex-col gap-4 p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+          <ul className="flex flex-col items-center gap-4 p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
             {logged}
           </ul>
         </div>

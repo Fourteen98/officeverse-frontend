@@ -35,7 +35,7 @@ const Reservation = (props) => {
               {office.address}
             </div>
             <div className="flex w-full justify-center gap-5">
-              <ul className="m-3 list-disc">
+              <ul className="m-3 list-disc text-gray-300">
                 <p className="text-sm font-semibold">Services</p>
                 {services.map((service) => (
                   <li key={service.id}>
@@ -46,7 +46,7 @@ const Reservation = (props) => {
                   </li>
                 ))}
               </ul>
-              <ul className="m-3 list-disc">
+              <ul className="m-3 list-disc text-gray-300">
                 <p className="text-sm font-semibold">Peripherals</p>
                 {peripherals.map((peripheral) => (
                   <li key={peripheral.id}>

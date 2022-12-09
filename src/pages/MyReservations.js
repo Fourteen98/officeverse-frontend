@@ -24,7 +24,7 @@ const MyReservations = () => {
   }
 
   return (
-    <div className="container flex flex-col items-center justify-center w-full mx-auto">
+    <div className="container flex flex-col items-center h-full w-full mx-auto">
       <ul className="flex flex-col p-5">
         {content}
       </ul>

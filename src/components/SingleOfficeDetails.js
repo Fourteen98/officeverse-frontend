@@ -77,7 +77,7 @@ SingleOfficeDetails.propTypes = {
   description: PropTypes.string.isRequired,
   area: PropTypes.string.isRequired,
   occupancy: PropTypes.string.isRequired,
-  images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
   // basicPrice: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   // user_id: PropTypes.number.isRequired,

@@ -17,11 +17,10 @@ const SingleOffice = (props) => {
           {title}
         </span>
         <span className="text-xs text-gray-400">
-          Address :
           {address}
         </span>
         <span className="text-xs text-gray-400">
-          Price :
+          <strong>{'Price: $ '}</strong>
           {basicPrice}
         </span>
       </div>
