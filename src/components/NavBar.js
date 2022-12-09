@@ -24,7 +24,7 @@ const NavBar = () => {
     ? (
       <>
         <li>
-          <NavLink to="/" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 bg-blue-700 text-gray-400 hover:text-gray-400 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white md:bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
+          <NavLink to="/" onClick={toggleModal} className={({ isActive }) => (isActive ? 'active block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white underline' : 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white no-underline')} aria-current="page">
             Home
           </NavLink>
         </li>
