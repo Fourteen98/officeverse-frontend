@@ -1,0 +1,23 @@
+fetch("http://127.0.0.1:4000/login", {
+method: "post",
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify({
+user: {
+email: "nicolle_wolf@dare.name",
+password: "password",
+},
+}),
+})
+.then((res) => {
+if (res.ok) {
+console.log(res.headers.get("Authorization"));
+localStorage.setItem("token", res.headers.get("Authorization"));
+return res.json();
+} else {
+throw new Error(res);
+}
+})
+.then((json) => console.dir(json))
+.catch((err) => console.error(err));
