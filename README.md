@@ -48,6 +48,7 @@ After you're finished please remove all the comments and instructions!
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
+- [Kanban Board](#kanban)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
@@ -69,7 +70,9 @@ After you're finished please remove all the comments and instructions!
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> This a Rails Api with endpoints for all the models we use in the Front-end. Each model have validations for data integtity.
+> This a React Front-End App to authenticate(sign-up or login) and give access to all the CRUD funtions to create offices to rent or rent other users offices.
+
+### [API Repository](https://github.com/Fourteen98/officeverse-api)
 
 <details>
   <summary>Client</summary>
@@ -99,7 +102,7 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
-> Our API have great feautures.
+> Our React Front-End have great feautures.
 
 - **All routes are protected if you are not loggedin**
 - **Current User State in store**
@@ -228,6 +231,12 @@ Example:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Kanban Board <a name="kanban"></a>
+
+Initial [Kanban Board](https://user-images.githubusercontent.com/44606356/203862531-d6b158e4-fcbe-4ef3-b11a-a30f6339c3d6.png)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- FUTURE FEATURES -->
 
 <!-- ## 🔭 Future Features <a name="future-features"></a>
