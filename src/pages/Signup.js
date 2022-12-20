@@ -25,7 +25,7 @@ const Signup = () => {
 
   const submitForm = async (data) => {
     if (data.password !== data.confirmPassword) {
-      alert('Password mismatch');
+      alert('Password mismatch'); // eslint-disable-line
       return;
     }
     // transform email string to lowercase to avoid case sensitivity issues during login
